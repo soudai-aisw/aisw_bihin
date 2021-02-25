@@ -1,0 +1,31 @@
+h1 {
+    padding-bottom: 0.3em;
+    line-height: 1.2;
+    border-bottom: solid 1px whitesmoke;
+  }
+
+  h2 {
+    padding-bottom: 0.3em;
+    padding-left: 0.1em;
+    border-left: solid 5px darkcyan;
+    border-bottom: solid 1px whitesmoke;
+  }
+
+  h3 {
+    padding-bottom: 0.2em;
+    padding-left: 0.2em;
+    border-left: solid 15px darkcyan;
+    border-bottom: solid 1px whitesmoke;
+  }
+
+  th {
+    background-color: darkcyan;
+  }
+
+  td {
+    background-color: gray;
+  }
+
+  pre, code {
+    background-color: lightblue;
+  }
