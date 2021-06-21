@@ -13,7 +13,7 @@ StandbyUserProcedureInputで返却が選択 : IF
 StandbyUserProcedureInputで返却が選択 : RFIDがかざされたら
 StandbyUserProcedureInputで返却が選択 : 処理
 StandbyUserProcedureInputで返却が選択 : DBと照合
-StandbyUserProcedureInputで返却が選択 : 
+StandbyUserProcedureInputで返却が選択 :
 StandbyUserProcedureInputで返却が選択 : Exit1
 StandbyUserProcedureInputで返却が選択 : 返却する備品のRFIDがかざされたとき
 StandbyUserProcedureInputで返却が選択 : 「機材IDxxxxxxxxxxxxを受理しました」と表示
