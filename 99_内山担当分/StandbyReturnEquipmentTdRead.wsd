@@ -1,39 +1,49 @@
-StandbyReturnEquipmentTdRead
+standbyreturnequipmenttdread
 
 @startuml
 
+[*] --> StandbyUseProcedureInput
+StandbyUseProcedureInput --> StandbyReturnEquipmentIdRead
+StandbyUseProcedureInput : 返却を選択
 
-[*] --> StandbyUserProcedureInputで返却が選択
-StandbyUserProcedureInputで返却が選択 --> SuccessReturnEquipment
-StandbyUserProcedureInputで返却が選択 : Entry
-StandbyUserProcedureInputで返却が選択 : 「返却する備品のRFIDをかざしてください」と表示
-StandbyUserProcedureInputで返却が選択 : Do
-StandbyUserProcedureInputで返却が選択 : RFIDかざされるまで待機(x秒)
-StandbyUserProcedureInputで返却が選択 : IF
-StandbyUserProcedureInputで返却が選択 : RFIDがかざされたら
-StandbyUserProcedureInputで返却が選択 : 処理
-StandbyUserProcedureInputで返却が選択 : DBと照合
-StandbyUserProcedureInputで返却が選択 :
-StandbyUserProcedureInputで返却が選択 : Exit1
-StandbyUserProcedureInputで返却が選択 : 返却する備品のRFIDがかざされたとき
-StandbyUserProcedureInputで返却が選択 : 「機材IDxxxxxxxxxxxxを受理しました」と表示
-StandbyUserProcedureInputで返却が選択 : SuccessReturnEquipmentに遷移
-StandbyUserProcedureInputで返却が選択 :
-StandbyUserProcedureInputで返却が選択 : Exit2
-StandbyUserProcedureInputで返却が選択 : かざされた備品のRFIDがDB上貸し出されていない場合
-StandbyUserProcedureInputで返却が選択 : ErrorWasOccuredに遷移
-StandbyUserProcedureInputで返却が選択 :
-StandbyUserProcedureInputで返却が選択 : Exit3
-StandbyUserProcedureInputで返却が選択 : かざされた備品のRFIDがDB上登録されていない
-StandbyUserProcedureInputで返却が選択 : ErrorWasOccuredに遷移
-SuccessReturnEquipment : Entry
-SuccessReturnEquipment : 「機材XXXの返却手続きが完了しました」と表示(x秒)
-SuccessReturnEquipment :
-SuccessReturnEquipment : Do
-SuccessReturnEquipment : none
-SuccessReturnEquipment :
-SuccessReturnEquipment : Exit
-SuccessReturnEquipment : 「初期画面に移行します」と表示(x秒)
+state StandbyReturnEquipmentIdRead{
+
+    state entry1
+    entry1: 「返却する備品のRFIDをかざしてください」と表示
+    state do1
+    do1 : RFIDかざされるまで待機(30秒)
+    do1 : Escボタン待機
+    state if<<choice>>
+    do1 -down-> if
+    if --> Exit1 : 返却する備品のRFIDがかざされた
+    if --> Exit2 : かざされたRFIDがDB上貸し出されていない場合
+    if --> Exit3 : かざされたRFIDがDB上登録されていない
+    if --> Exit4 : 30秒無操作
+    if --> Exit5 : Esc操作受付
+
+}
+
+Exit1 --> SuccessReturnEquipment
+Exit2 --> ErrorWasOccured
+Exit3 --> ErrorWasOccured
+Exit4 --> Restart
+Exit5 --> Restart
+
+state SuccessReturnEquipment{
+
+    state entry2
+    entry2: 「機材XXXの返却手続きが完了しました」と表示(30秒)
+    state do2
+    do2: none
+    state exit2
+    exit2: Restartに遷移
+
+}
+
+SuccessReturnEquipment --> Restart
+
+
 
 
 @enduml
+
