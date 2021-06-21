@@ -1,0 +1,41 @@
+StandbyReturnEquipmentTdRead
+
+@startuml
+
+
+[*] --> StandbyUserProcedureInputで返却が選択
+StandbyUserProcedureInputで返却が選択 --> SuccessReturnEquipment
+StandbyUserProcedureInputで返却が選択 : Entry
+StandbyUserProcedureInputで返却が選択 : none
+StandbyUserProcedureInputで返却が選択 : Do
+StandbyUserProcedureInputで返却が選択 : 「返却する備品のRFIDをかざしてください」と表示
+StandbyUserProcedureInputで返却が選択 :
+StandbyUserProcedureInputで返却が選択 : Exit1
+StandbyUserProcedureInputで返却が選択 : 返却する備品のRFIDがかざされたとき
+StandbyUserProcedureInputで返却が選択 : 「機材IDxxxxxxxxxxxxを受理しました」と表示
+StandbyUserProcedureInputで返却が選択 : SuccessReturnEquipmentに遷移
+StandbyUserProcedureInputで返却が選択 :
+StandbyUserProcedureInputで返却が選択 : Exit2
+StandbyUserProcedureInputで返却が選択 : かざされた備品のRFIDがDB上貸し出されていない場合
+StandbyUserProcedureInputで返却が選択 : ErrorWasOccuredに遷移
+StandbyUserProcedureInputで返却が選択 :
+StandbyUserProcedureInputで返却が選択 : Exit3
+StandbyUserProcedureInputで返却が選択 : かざされた備品のRFIDがDB上登録されていない
+StandbyUserProcedureInputで返却が選択 : ErrorWasOccuredに遷移
+SuccessReturnEquipment : Entry
+SuccessReturnEquipment : 「機材XXXの返却手続きが完了しました」と表示(x秒)
+SuccessReturnEquipment :
+SuccessReturnEquipment : Do
+SuccessReturnEquipment : none
+SuccessReturnEquipment :
+SuccessReturnEquipment : Exit
+SuccessReturnEquipment : 「初期画面に移行します」と表示(x秒) 
+
+
+
+
+
+
+
+
+@enduml
