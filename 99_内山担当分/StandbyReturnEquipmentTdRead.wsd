@@ -6,10 +6,14 @@ StandbyReturnEquipmentTdRead
 [*] --> StandbyUserProcedureInputで返却が選択
 StandbyUserProcedureInputで返却が選択 --> SuccessReturnEquipment
 StandbyUserProcedureInputで返却が選択 : Entry
-StandbyUserProcedureInputで返却が選択 : none
-StandbyUserProcedureInputで返却が選択 : Do
 StandbyUserProcedureInputで返却が選択 : 「返却する備品のRFIDをかざしてください」と表示
-StandbyUserProcedureInputで返却が選択 :
+StandbyUserProcedureInputで返却が選択 : Do
+StandbyUserProcedureInputで返却が選択 : RFIDかざされるまで待機(x秒)
+StandbyUserProcedureInputで返却が選択 : IF
+StandbyUserProcedureInputで返却が選択 : RFIDがかざされたら
+StandbyUserProcedureInputで返却が選択 : 処理
+StandbyUserProcedureInputで返却が選択 : DBと照合
+StandbyUserProcedureInputで返却が選択 : 
 StandbyUserProcedureInputで返却が選択 : Exit1
 StandbyUserProcedureInputで返却が選択 : 返却する備品のRFIDがかざされたとき
 StandbyUserProcedureInputで返却が選択 : 「機材IDxxxxxxxxxxxxを受理しました」と表示
@@ -29,13 +33,7 @@ SuccessReturnEquipment : Do
 SuccessReturnEquipment : none
 SuccessReturnEquipment :
 SuccessReturnEquipment : Exit
-SuccessReturnEquipment : 「初期画面に移行します」と表示(x秒) 
-
-
-
-
-
-
+SuccessReturnEquipment : 「初期画面に移行します」と表示(x秒)
 
 
 @enduml
