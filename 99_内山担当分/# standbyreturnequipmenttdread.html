@@ -1,0 +1,344 @@
+<!DOCTYPE html><html><head>
+      <title># standbyreturnequipmenttdread</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="standbyreturnequipmenttdread">standbyreturnequipmenttdread</h1>
+
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="834px" preserveAspectRatio="none" style="width:1278px;height:834px;" version="1.1" viewBox="0 0 1278 834" width="1278px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jhkoyyuskcpt" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[fe3c38f0a0cc09ca729fb87394e7c289]
+cluster StandbyReturnEquipmentIdRead--><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="349" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="1123" x="143.5" y="195"/><rect fill="#FFFFFF" height="315.3906" rx="12.5" ry="12.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="1117" x="146.5" y="225.6094"/><line style="stroke:#A80036;stroke-width:1.5;" x1="143.5" x2="1266.5" y1="222.6094" y2="222.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="207" x="601.5" y="213.5332">StandbyReturnEquipmentIdRead</text><g id="StandbyReturnEquipmentIdRead.entry1"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="52.7031" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="300" x="922.5" y="246.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="922.5" x2="1222.5" y1="274.1094" y2="274.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="40" x="1052.5" y="266.0332">entry1</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="280" x="927.5" y="291.5664">&#x300C;&#x8FD4;&#x5374;&#x3059;&#x308B;&#x5099;&#x54C1;&#x306E;RFID&#x3092;&#x304B;&#x3056;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x300D;&#x3068;&#x8868;&#x793A;</text></g><g id="StandbyReturnEquipmentIdRead.do1"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="67.7969" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="190" x="678.5" y="239"/><line style="stroke:#A80036;stroke-width:1.5;" x1="678.5" x2="868.5" y1="266.6094" y2="266.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="24" x="761.5" y="258.5332">do1</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="170" x="683.5" y="284.0664">RFID&#x304B;&#x3056;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x5F85;&#x6A5F;(30&#x79D2;)</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="81" x="683.5" y="299.1602">Esc&#x30DC;&#x30BF;&#x30F3;&#x5F85;&#x6A5F;</text></g><polygon fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" points="773.5,368,785.5,380,773.5,392,761.5,380,773.5,368" style="stroke:#A80036;stroke-width:1.5;"/><g id="StandbyReturnEquipmentIdRead.Exit1"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="191.5" y="470"/><line style="stroke:#A80036;stroke-width:1.5;" x1="191.5" x2="241.5" y1="497.6094" y2="497.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="201.5" y="489.5332">Exit1</text></g><g id="StandbyReturnEquipmentIdRead.Exit2"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="464.5" y="470"/><line style="stroke:#A80036;stroke-width:1.5;" x1="464.5" x2="514.5" y1="497.6094" y2="497.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="474.5" y="489.5332">Exit2</text></g><g id="StandbyReturnEquipmentIdRead.Exit3"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="649.5" y="470"/><line style="stroke:#A80036;stroke-width:1.5;" x1="649.5" x2="699.5" y1="497.6094" y2="497.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="659.5" y="489.5332">Exit3</text></g><g id="StandbyReturnEquipmentIdRead.Exit4"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="1032.5" y="470"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1032.5" x2="1082.5" y1="497.6094" y2="497.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="1042.5" y="489.5332">Exit4</text></g><g id="StandbyReturnEquipmentIdRead.Exit5"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="1128.5" y="470"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1128.5" x2="1178.5" y1="497.6094" y2="497.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="1138.5" y="489.5332">Exit5</text></g><ellipse cx="151.5" cy="16" fill="#000000" filter="url(#f1jhkoyyuskcpt)" rx="10" ry="10" style="stroke:none;stroke-width:1.0;"/><g id="StandbyUseProcedureInput"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="52.7031" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="193" x="55" y="87"/><line style="stroke:#A80036;stroke-width:1.5;" x1="55" x2="248" y1="114.6094" y2="114.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="173" x="65" y="106.5332">StandbyUseProcedureInput</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="60" x="60" y="132.0664">&#x8FD4;&#x5374;&#x3092;&#x9078;&#x629E;</text></g><g id="ErrorWasOccured"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="134" x="579.5" y="629"/><line style="stroke:#A80036;stroke-width:1.5;" x1="579.5" x2="713.5" y1="656.6094" y2="656.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="589.5" y="648.5332">ErrorWasOccured</text></g><g id="Restart"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="66" x="1024.5" y="770"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1024.5" x2="1090.5" y1="797.6094" y2="797.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="1034.5" y="789.5332">Restart</text></g><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="110.3125" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="525.5" x="7" y="599"/><rect fill="#FFFFFF" height="76.7031" rx="12.5" ry="12.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="519.5" x="10" y="629.6094"/><line style="stroke:#A80036;stroke-width:1.5;" x1="7" x2="532.5" y1="626.6094" y2="626.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="163" x="188.25" y="618.5332">SuccessReturnEquipment</text><g id="SuccessReturnEquipment.entry2"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="52.7031" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="315" x="19" y="638.6094"/><line style="stroke:#A80036;stroke-width:1.5;" x1="19" x2="334" y1="666.2188" y2="666.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="40" x="156.5" y="658.1426">entry2</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="295" x="24" y="683.6758">&#x300C;&#x6A5F;&#x6750;XXX&#x306E;&#x8FD4;&#x5374;&#x624B;&#x7D9A;&#x304D;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x307E;&#x3057;&#x305F;&#x300D;&#x3068;&#x8868;&#x793A;(30&#x79D2;)</text></g><g id="SuccessReturnEquipment.do2"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="52.7031" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="352.5" y="638.6094"/><line style="stroke:#A80036;stroke-width:1.5;" x1="352.5" x2="402.5" y1="666.2188" y2="666.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="24" x="365.5" y="658.1426">do2</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="28" x="357.5" y="683.6758">none</text></g><g id="SuccessReturnEquipment.exit2"><rect fill="#FEFECE" filter="url(#f1jhkoyyuskcpt)" height="52.7031" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="96" x="420.5" y="638.6094"/><line style="stroke:#A80036;stroke-width:1.5;" x1="420.5" x2="516.5" y1="666.2188" y2="666.2188"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="454" y="658.1426">exit2</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="425.5" y="683.6758">Restart&#x306B;&#x9077;&#x79FB;</text></g><!--MD5=[1b1e80ba9f4064bd3522eed9b9ea04be]
+link *start to StandbyUseProcedureInput--><path d="M151.5,26.16 C151.5,38.79 151.5,62.18 151.5,81.43 " fill="none" id="*start-to-StandbyUseProcedureInput" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="151.5,86.74,155.5,77.74,151.5,81.74,147.5,77.74,151.5,86.74" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b348e47ed98e71344b6ca8769b8ebbc2]
+link StandbyUseProcedureInput to StandbyReturnEquipmentIdRead--><path d="M151.5,140.16 C151.5,151.1425 151.5,164.7037 151.5,178.9095 C151.5,182.461 151.5,186.0527 151.5,189.6545 C151.5,190.5549 151.5,191.456 151.5,192.3573 C151.5,192.8079 151.5,193.2585 151.5,193.7092 C151.5,193.9345 151.5,194.1598 151.5,194.3851 " fill="none" id="StandbyUseProcedureInput-to-StandbyReturnEquipmentIdRead" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="151.5,194.3851,155.5,185.3851,151.5,189.3851,147.5,185.3851,151.5,194.3851" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0ae0a9a930ce986931378463657e4954]
+link do1 to if--><path d="M773.5,307.22 C773.5,325.63 773.5,347.71 773.5,362.47 " fill="none" id="do1-to-if" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="773.5,367.56,777.5,358.56,773.5,362.56,769.5,358.56,773.5,367.56" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a7b8eb0acbb02ea6f4bdd7d927ba4402]
+link if to Exit1--><path d="M762.11,381.04 C687.5,381.4 270.47,385.06 229.5,422 C217.91,432.45 214.45,449.47 213.99,464.33 " fill="none" id="if-to-Exit1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="213.94,469.69,218.017,460.7246,213.9829,464.6902,210.0173,460.656,213.94,469.69" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="230.5" y="436.4951">&#x8FD4;&#x5374;&#x3059;&#x308B;&#x5099;&#x54C1;&#x306E;RFID&#x304C;&#x304B;&#x3056;&#x3055;&#x308C;&#x305F;</text><!--MD5=[293c26e5a5ce8e91a18e4d5ce4b0527d]
+link if to Exit2--><path d="M762.95,381.5 C708.95,384.14 465.24,397.39 443.5,422 C430.01,437.27 444.24,456.88 460.33,471.78 " fill="none" id="if-to-Exit2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="464.44,475.46,460.3899,466.4824,460.7101,472.1302,455.0623,472.4503,464.44,475.46" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="281" x="444.5" y="436.4951">&#x304B;&#x3056;&#x3055;&#x308C;&#x305F;RFID&#x304C;DB&#x4E0A;&#x8CB8;&#x3057;&#x51FA;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x5834;&#x5408;</text><!--MD5=[56d2a1a0ff41c39456540c6333e331d0]
+link if to Exit3--><path d="M769.48,388.31 C762.94,399.89 749.24,422.88 734.5,440 C725.3,450.69 714.06,461.32 703.8,470.28 " fill="none" id="if-to-Exit3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="699.78,473.76,709.1997,470.8843,703.557,470.4837,703.9576,464.8411,699.78,473.76" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="242" x="748.5" y="436.4951">&#x304B;&#x3056;&#x3055;&#x308C;&#x305F;RFID&#x304C;DB&#x4E0A;&#x767B;&#x9332;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;</text><!--MD5=[284c058d980fc7ec039c0d982082f941]
+link if to Exit4--><path d="M785.29,380.37 C820.54,379.04 927.16,379.02 999.5,422 C1017.03,432.42 1031.45,450.23 1041.52,465.53 " fill="none" id="if-to-Exit4" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1044.25,469.77,1042.7629,460.0341,1041.5527,465.5599,1036.0268,464.3497,1044.25,469.77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1021.5" y="436.4951">30&#x79D2;&#x7121;&#x64CD;&#x4F5C;</text><!--MD5=[284759c8f8bf8e47ff47e66f2a93f233]
+link if to Exit5--><path d="M784.46,381.29 C834.5,382.8 1041.24,390.82 1096.5,422 C1114.27,432.03 1128.52,450.02 1138.32,465.51 " fill="none" id="if-to-Exit5" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1140.97,469.8,1139.6452,460.0407,1138.3431,465.5456,1132.8382,464.2436,1140.97,469.8" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="1118.5" y="436.4951">Esc&#x64CD;&#x4F5C;&#x53D7;&#x4ED8;</text><!--MD5=[d1e0dd53e0430f96e269be3defe0a59a]
+link Exit1 to SuccessReturnEquipment--><path d="M224.67,520.19 C231.31,539.86 240.96,568.47 249.62,594.1 " fill="none" id="Exit1-to-SuccessReturnEquipment" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="251.22,598.85,252.1333,589.0436,249.6217,594.1123,244.553,591.6008,251.22,598.85" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[f994b41bfd954303b06ece4d2fae5fa1]
+link Exit2 to ErrorWasOccured--><path d="M513.69,520.19 C542.04,548.54 588.93,595.43 618.74,625.24 " fill="none" id="Exit2-to-ErrorWasOccured" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="622.29,628.79,618.7545,619.5976,618.7545,625.2545,613.0976,625.2545,622.29,628.79" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2ca9358098e476806b945c45d28a03bc]
+link Exit3 to ErrorWasOccured--><path d="M670.19,520.19 C665.21,548.08 657.04,593.91 651.71,623.77 " fill="none" id="Exit3-to-ErrorWasOccured" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="650.82,628.79,656.3259,620.6239,651.6906,623.8664,648.4481,619.231,650.82,628.79" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[710e888e688d29d2f48086fea6785c6c]
+link Exit4 to Restart--><path d="M1057.5,520.13 C1057.5,574.34 1057.5,705.59 1057.5,764.51 " fill="none" id="Exit4-to-Restart" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1057.5,769.64,1061.5,760.64,1057.5,764.64,1053.5,760.64,1057.5,769.64" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[edf5cf85d7b51267ffa8e37e85207599]
+link Exit5 to Restart--><path d="M1147.97,520.34 C1137.56,564.74 1113.39,661.55 1083.5,740 C1080.34,748.29 1076.4,757.06 1072.55,765.05 " fill="none" id="Exit5-to-Restart" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1070.17,769.92,1077.7164,763.5914,1072.3661,765.4281,1070.5294,760.0777,1070.17,769.92" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8aa383ea55d246b656ca2af21989d462]
+link SuccessReturnEquipment to Restart--><path d="M532.23,703.58 C542.45,705.42 552.57,707.23 562.5,709 C732.6,739.28 935.94,773.61 1019.15,787.58 " fill="none" id="SuccessReturnEquipment-to-Restart" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1024.46,788.47,1016.2324,783.0564,1019.5269,787.655,1014.9283,790.9494,1024.46,788.47" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cc2bd53fdda86f04e9688be4101b8f3d]
+@startuml
+[*] - -> StandbyUseProcedureInput
+StandbyUseProcedureInput - -> StandbyReturnEquipmentIdRead
+StandbyUseProcedureInput : 返却を選択
+
+state StandbyReturnEquipmentIdRead{
+
+    state entry1
+    entry1: 「返却する備品のRFIDをかざしてください」と表示
+    state do1
+    do1 : RFIDかざされるまで待機(30秒)
+    do1 : Escボタン待機
+    state if<<choice>>
+    do1 -down-> if
+    if - -> Exit1 : 返却する備品のRFIDがかざされた
+    if - -> Exit2 : かざされたRFIDがDB上貸し出されていない場合
+    if - -> Exit3 : かざされたRFIDがDB上登録されていない
+    if - -> Exit4 : 30秒無操作
+    if - -> Exit5 : Esc操作受付
+
+}
+
+Exit1 - -> SuccessReturnEquipment
+Exit2 - -> ErrorWasOccured
+Exit3 - -> ErrorWasOccured
+Exit4 - -> Restart
+Exit5 - -> Restart
+
+state SuccessReturnEquipment{
+
+    state entry2
+    entry2: 「機材XXXの返却手続きが完了しました」と表示(30秒)
+    state do2
+    do2: none
+    state exit2
+    exit2: Restartに遷移
+
+}
+
+SuccessReturnEquipment - -> Restart
+@enduml
+
+PlantUML version 1.2020.26(Tue Dec 22 02:45:07 JST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg></p>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
