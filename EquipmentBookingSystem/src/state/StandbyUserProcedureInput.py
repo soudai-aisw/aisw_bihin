@@ -29,7 +29,7 @@ class StandbyUserProcedureInput(state.IState):
         else:
             Console.puts("無効な入力ですね")
 
- #       state.CommonResource.enquiry = procedure_type
+        state.CommonResource.enquiry = procedure_type
 
     def get_next_state(self):
         return self.__get_next_state
