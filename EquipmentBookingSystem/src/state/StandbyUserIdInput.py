@@ -28,7 +28,8 @@ class StandbyUserIdInput(state.IState):
                 Console.puts("存在しない社員番号です")
 
             # 現状は未実装なので必ず失敗
-            self.__get_next_state = state.ErrorHasOccurred()
+            self.__get_next_state = state.StandbyUserProcedureInput()
+#            self.__get_next_state = state.StandbyUserIdInput()
         else:
             self.__get_next_state = state.StandbyUserIdInput()
 
