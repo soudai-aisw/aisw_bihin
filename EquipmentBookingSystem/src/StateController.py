@@ -17,47 +17,34 @@ class StateController():
     def step(self):
         self.__pressed_key.capture()
 
-        # 現在の状態を実行する
+        # Execute current state.
         self.__current.do()
 
         if (self.__current.should_exit()):
-            # 現在の状態を終了すべき場合、
-
-            # 1. 現在の状態を終了する
             self.__current.exit()
 
-            # 2. 次の状態を取得する
             next_state = self.__current.get_next_state()
 
-            # 3. 遷移前の状態を記憶する
             state.CommonResource.prev_state = self.__current
 
-            # 4. 状態遷移を行う
             self.__current = next_state
 
-            # 5. 遷移先の状態を開始する
             self.__current.entry()
 
-            # 6. タイムアウト時間をクリアする
             self.__restart_timer()
 
-        elif (self.__current.__class__ is not state.Init().__class__ and
-              self.__current.__class__ is not state.Restart().__class__):
-            # Init でも Restart でもない場合はタイムアウトとESCの入力を監視しRestartに遷移する
-            # 前状態のexitは実行しないためリソースの解放はデストラクタに実装すること
-
+        elif not isinstance(self.__current, (state.Init, state.Restart)):
             if self.__timeout_detected() or self.__pressed_key.is_escape():
                 state.CommonResource.prev_state = self.__current
                 self.__current = state.Restart()
                 self.__current.entry()
                 self.__restart_timer()
-                
+
     def run(self):
-        while self.__current.__class__ is not state.Exit().__class__:
+        while not isinstance(self.__current, state.Exit):
             time.sleep(0.010)
             self.step()
 
-    # 5秒経過でタイムアウト
     def __restart_timer(self):
         self.__start_time = time.time()
 
