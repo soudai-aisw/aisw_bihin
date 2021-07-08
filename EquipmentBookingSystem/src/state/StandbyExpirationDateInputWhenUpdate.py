@@ -22,11 +22,11 @@ class StandbyUserProcedureInput(state.IState):
         if( "1" == procedure_type ):
             Console.puts("返却予定日")
             Console.puts(return_date)
-　　　      Console.puts("を受理しました")
+            Console.puts("を受理しました")
         state.CommonResource.expirationDate = return_date
 
     def get_next_state(self):
-        return state.SuccessUpdateEquipment
+        return state.SuccessUpdateEquipment()
 
     def should_exit(self):
         return self.__input.submitted()
