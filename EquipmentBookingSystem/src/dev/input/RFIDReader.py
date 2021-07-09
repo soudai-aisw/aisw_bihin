@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-import dev.input as input
-import platform
-
 if __name__ == "__main__":
     import time
     import sys
     sys.path.append('../')
     sys.path.append('../../')
 
+import platform
+
 if (platform.system() == 'Windows'):
+    import dev.input as input
+    
     class RFIDReader(input.IUserInputReader):
         def __init__(self):
             pass
@@ -23,9 +24,6 @@ if (platform.system() == 'Windows'):
             return False
 
 else:
-    ##import dev.display as display
-    ##import dev.input as input
-
     import RPi.GPIO as GPIO
     import MFRC522
     import signal
@@ -36,44 +34,56 @@ else:
     # Not implemented yet.
     class RFIDReader():
     ##class RFIDReader(input.IUserInputReader):
-        
+
+        #        
         def __init__(self):
-            continue_reading = True
-            pass
-        
+            self.__continue_reading = True
+            self.__submitted = False
+            self.__ret_uid = ""        
         #
         def capture(self):
-            
-            #(status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
-            #(status,uid) = MIFAREReader.MFRC522_Anticoll()
-            
-            pass
-        
-        def get_string(self):
+            GPIO.setwarnings(False)
+            GPIO.cleanup()
             
             MIFAREReader = MFRC522.MFRC522()
-            continue_reading = True
-            while continue_reading:
+            self.__continue_reading = True
+            self.__submitted = False
+            while self.__continue_reading:
             
                 (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
                 (status,uid) = MIFAREReader.MFRC522_Anticoll()
 
                 if status == MIFAREReader.MI_OK:
-
-                    ret_uid = str(uid[0]) + str(uid[1]) + str(uid[2]) + str(uid[3])
-                    continue_reading = False
+                    self.__ret_uid = str(uid[0]) + str(uid[1]) + str(uid[2]) + str(uid[3])
+                    self.__continue_reading = False
             GPIO.cleanup()
-            return ret_uid 
+            self.__submitted = True
+        
+        #
+        def get_string(self):
+            return self.__ret_uid
 
+        #
         def submitted(self):
-            return False
+            return self.__submitted
 
+    #
     def debug_this_module():
-        pass
+        idr = RFIDReader()
+        idr.__init__()
+        ret_subm = idr.submitted()
+        print(ret_subm)
+        
+        idr.capture()
+        ret_subm = idr.submitted()
+        print(ret_subm)
+        
+        ret_dat = idr.get_string()
+        print(ret_dat)
+        
 
     if __name__ == "__main__":
         help(debug_this_module)
         time.sleep(1)
         debug_this_module()
-        ret_dat = RFIDReader.get_string("")
-        print(ret_dat)
+        
