@@ -9,15 +9,13 @@ class StandbyBarrowEquipmentIdRead(state.IState):
         Console.clear()
         Console.puts("借用する備品のRFIDをかざしてください")
         Console.puts(">", end="")
-        self.__input = input.UserInputReader()
-        self.__get_next_state = state.ErrorHasOccurred()
+
 
     def do(self):
-        self.__input.capture()
+        # RFID値取得
+        touched_rfid_id = self.__input.RFIDReader.ret_uid()
 
     def exit(self):
-         # rfid値初期化
-        rfid_id = self.__input.get_string()
 
         # 勝手にDBから情報もってきて配列に入れる想定
         # 0: employeeID
@@ -50,7 +48,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
             self.__get_next_state = state.ErrorHasOccurred()
 
     def get_next_state(self):
-        return state.StandabyExpirationDateInputWhenBarrow
+        return self.__get_next_state
 
     def should_exit(self):
         return self.__input.submitted()

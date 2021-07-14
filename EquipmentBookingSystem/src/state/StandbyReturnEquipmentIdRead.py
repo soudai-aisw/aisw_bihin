@@ -13,12 +13,10 @@ class StandbyReturnEquipmentRead(state.IState):
         Console.puts(">",end="")
 
     def do(self):
-        # RFID入力受付(適当)
-        input.rfid_wait
+        # RFID値取得
+        touched_rfid_id = self.__input.RFIDReader.ret_uid()
 
     def exit(self):
-        # rfid値初期化
-        rfid_id = self.__input.get_string()
 
         # 勝手にDBから情報もってきて配列に入れる想定
         # 0: employeeID
