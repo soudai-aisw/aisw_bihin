@@ -14,11 +14,11 @@ import dev.input as input
 class SuccessBarrowEquipment(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts(state.CommonResource.employeeId)
-        Console.puts("機材ID「","」")
-        Console.puts("返却予定日「",state.CommonResource.expirationDate,"]","\n")
+        Console.puts("ユーザID：",state.CommonResource.employeeId)
+        Console.puts("機材ID：",state.CommonResource.equipmentId)
+        Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
 
-        Console.puts("上記の情報で備品の貸出(更新)手続きが完了しました。")
+        Console.puts("上記の情報で備品の貸出手続きが完了しました。")
         Console.puts(">", end="")
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
@@ -42,7 +42,7 @@ class SuccessBarrowEquipment(state.IState):
         elapsed_time = time.time() - self.__start_time
         return (3 < elapsed_time)
 
-
+#-----------------------------------------------------------------------------
 def debug_this_module():
     Console.clear()
     temp = SuccessBarrowEquipment()
@@ -60,7 +60,8 @@ def debug_this_module():
 
 if __name__ == "__main__":
     help(debug_this_module)
-    state.commonResource.CommonResource.employeeId = "0079049"
-    state.commonResource.CommonResource.expirationDate = "21/07/15"
+    state.CommonResource.employeeId = "0079049"
+    state.CommonResource.equipmentId = "00-00-00-00"
+    state.CommonResource.expirationDate = "21/07/15"
     time.sleep(1)
     debug_this_module()
