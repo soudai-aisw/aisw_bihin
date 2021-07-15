@@ -9,7 +9,7 @@ if __name__ == "__main__":
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-import db.matching as db
+import db.matching.DBmatching as db
 
 class StandbyBarrowEquipmentIdRead(state.IState):
     def entry(self):
@@ -21,7 +21,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
     def do(self):
         self.__input.capture()
         # DBから社員番号を取得
-        touched_rfid_id = self.db.DBmatching.DBmatching_EmpIDtoEmpNo
+        touched_rfid_id = self.__db.DBmatching_EmpIDtoEmpNo
 
     def exit(self):
 
@@ -32,7 +32,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
         # 3：故障中
         #--------------------
 
-        rfid_return = self.db.DBmatching_EquIDtoEquStatus
+        rfid_return = self.__db.DBmatching_EquIDtoEquStatus
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
         if rfid_return == 1:
