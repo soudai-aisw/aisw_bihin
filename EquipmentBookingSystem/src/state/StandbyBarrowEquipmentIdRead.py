@@ -68,6 +68,7 @@ def debug_this_module():
         print(temp.get_next_state())
 
 if __name__ == "__main__":
+    # helpのことはわかっていない
     help(debug_this_module)
     time.sleep(1)
     debug_this_module()
