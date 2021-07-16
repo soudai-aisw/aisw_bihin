@@ -15,10 +15,14 @@ class StandbyReturnEquipmentIdRead(state.IState):
     def entry(self):
         Console.puts("返却する備品のRFIDをかざしてください")
         Console.puts(">",end="")
-        self.__get_string = db.DBmatching_EmpIDtoEmpNo
+        # self.__get_string = db.DBmatching_EmpIDtoEmpNo
+        # デバッグ用
+        self.__get_string = 2
+        if self.__get_string != "":
+            self.__submitted = True
 
     def do(self):
-        self.__input.capture()
+        self.__capture()
 
     def exit(self):
 
@@ -29,11 +33,11 @@ class StandbyReturnEquipmentIdRead(state.IState):
         # 3：故障中
         #--------------------
 
-        rfid_return = self.__get_string()
+        rfid_return = self.__get_string
         #rfid_return = 2 # デバッグ用
 
         # かざされたRFIDがDB照合結果、貸し出されているものだった場合(今は仮値)
-        if rfid_return == 1:
+        if rfid_return == 2:
             self.__get_next_state = state.SuccessReturnEquipment()
 
         # かざされたRFIDがDB上貸し出されていない場合(今は仮値)
@@ -52,15 +56,15 @@ class StandbyReturnEquipmentIdRead(state.IState):
             return self.__get_next_state
 
     def should_exit(self):
-            return self.__input.submitted()
+            return self.__submitted
 
 def debug_this_module():
     temp = StandbyReturnEquipmentIdRead()
     temp.entry()
-    temp.__get_string = 2
     time.sleep(0.010)
     if (temp.should_exit()):
         temp.exit()
+        print(temp.get_next_state())
 
 if __name__ == "__main__":
     help(debug_this_module)
