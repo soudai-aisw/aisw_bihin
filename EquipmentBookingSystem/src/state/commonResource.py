@@ -10,12 +10,14 @@ class CommonResource():
 
     employeeId = ""                 # 社員番号
     enquiry = ENQUIRY_INVALID       # 問い合わせ内容
-    expirationDate = ""
+    equipmentId = ""                # 機材ID
+    expirationDate = ""             # 返却予定日
     prev_state = state.Init()
 
     @staticmethod
     def initialize():
-        CommonResource.employeeId = ""                 # 社員番号
+        CommonResource.employeeId = ""                  # 社員番号
         CommonResource.enquiry = CommonResource.ENQUIRY_INVALID       # 問い合わせ内容
-        CommonResource.expirationDate = ""
+        CommonResource.equipmentId = ""                 # 機材ID
+        CommonResource.expirationDate = ""              # 返却予定日
 

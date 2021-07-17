@@ -1,49 +1,53 @@
 #!/usr/bin/env python
 
+if __name__ == "__main__":
+    import os
+    import sys
+    import time
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import db.matching.DBmatching as db
 
-# いるんかわからん(理解してない)
-input.path.append('../../')
-
-class StandbyReturnEquipmentRead(state.IState):
+class StandbyReturnEquipmentIdRead(state.IState):
     def entry(self):
         Console.puts("返却する備品のRFIDをかざしてください")
         Console.puts(">",end="")
+        # self.__get_string = db.DBmatching_EmpIDtoEmpNo
+        # デバッグ用
+        self.__get_string = 2
+        if self.__get_string != "":
+            self.__submitted = True
 
     def do(self):
-        # RFID値取得
-        touched_rfid_id = self.__input.RFIDReader.ret_uid()
+        self.__capture()
 
     def exit(self):
 
-        # 勝手にDBから情報もってきて配列に入れる想定
-        # 0: employeeID
-        # 1: enquiry
-        # 2: expirationDate
-        # 3: prev_state
-        # 4: 登録番号？
-        # 5: 機材名
-        rfid_return = []
+        #-----DBの戻り値-----
+        # 0: 未登録
+        # 1：借用可能
+        # 2：借用中
+        # 3：故障中
+        #--------------------
 
-        #ここにDBと照合する処理を入れる##################################
-        #
-        #
-        ##############################################################
+        rfid_return = self.__get_string
+        #rfid_return = 2 # デバッグ用
 
         # かざされたRFIDがDB照合結果、貸し出されているものだった場合(今は仮値)
-        if rfid_return[0] == "0079591" and rfid_return[2] != 0:
+        if rfid_return == 2:
             self.__get_next_state = state.SuccessReturnEquipment()
 
         # かざされたRFIDがDB上貸し出されていない場合(今は仮値)
-        if rfid_return[2] == "":
+        if rfid_return == 1:
             Console.puts("貸し出されていない備品です。")
             Console.puts(">",end="")
             self.__get_next_state = state.ErrorHasOccurred()
 
         # かざされたRFIDがDB上登録されていない場合(今は仮値)
-        if rfid_return[4] == "":
+        if rfid_return == 0:
             Console.puts("登録されていない備品です。")
             Console.puts(">",end="")
             self.__get_next_state = state.ErrorHasOccurred()
@@ -52,4 +56,18 @@ class StandbyReturnEquipmentRead(state.IState):
             return self.__get_next_state
 
     def should_exit(self):
-            return self.__input.submitted()
+            return self.__submitted
+
+def debug_this_module():
+    temp = StandbyReturnEquipmentIdRead()
+    temp.entry()
+    time.sleep(0.010)
+    if (temp.should_exit()):
+        temp.exit()
+        print(temp.get_next_state())
+
+if __name__ == "__main__":
+    # helpのことはわかっていない
+    help(debug_this_module)
+    time.sleep(1)
+    debug_this_module()

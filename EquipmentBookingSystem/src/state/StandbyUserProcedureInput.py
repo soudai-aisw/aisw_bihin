@@ -21,11 +21,13 @@ class StandbyUserProcedureInput(state.IState):
         procedure_type = self.__input.get_string()
         if( "1" == procedure_type ):
             Console.puts("借用ですね")
- #           self.__get_next_state = state.StandbyUserIdInput()
+#            self.__get_next_state = state.StandbyBarrowEquipmentIdRead()
         elif( "2" == procedure_type ):
             Console.puts("返却ですね")
+#            self.__get_next_state = state.StandbyReturnEquipmentIdRead()
         elif( "3" == procedure_type ):
-            Console.puts("更新ですね")
+#            Console.puts("更新ですね")
+            self.__get_next_state = state.StandbyUpdateEquipmentIdInput()
         else:
             Console.puts("無効な入力ですね")
 
