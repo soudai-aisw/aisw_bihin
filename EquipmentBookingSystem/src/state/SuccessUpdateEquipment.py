@@ -14,8 +14,8 @@ import dev.input as input
 class SuccessUpdateEquipment(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts("ユーザID：",state.CommonResource.employeeId)
-        Console.puts("機材ID：",state.CommonResource.equipmentId)
+        Console.puts("ユーザID  ：",state.CommonResource.employeeId)
+        Console.puts("機材ID    ：",state.CommonResource.equipmentId)
         Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
 
         Console.puts("上記の情報で備品の更新手続きが完了しました。")
