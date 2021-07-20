@@ -2,9 +2,11 @@
 
 
 
+import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import db.matching.DBmatching as db
 
 class StandbyUserIdInput(state.IState):
     def entry(self):
@@ -21,15 +23,22 @@ class StandbyUserIdInput(state.IState):
         employee_id = self.__input.get_string()
         if (employee_id != ""):
             Console.puts("社員番号「", employee_id, "」を問い合わせます")
+            match_id = db.DBmatching_EmpIDtoEmpNo(employee_id)
 
-            if (employee_id == "0079522"):
-                state.CommonResource.employeeId = employee_id
+            # 現状は「0079522」固定値返却なので必ず成功
+            if (match_id == "0079522"):
+                # ここに社員名をDBから取得して表示したい
+              #  name = db.名前取得(match_id)
+              #  Console.puts("ようこそ「%s」さん")
+                Console.puts(" ")
+                time.sleep(1.500)
+                state.CommonResource.employeeId = match_id
+                self.__get_next_state = state.StandbyUserProcedureInput()
             else:
                 Console.puts("存在しない社員番号です")
+                Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。")
+                self.__get_next_state = state.ErrorHasOccurred()
 
-            # 現状は未実装なので必ず失敗
-            self.__get_next_state = state.StandbyUserProcedureInput()
-#            self.__get_next_state = state.StandbyUserIdInput()
         else:
             self.__get_next_state = state.StandbyUserIdInput()
 
