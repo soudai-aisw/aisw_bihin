@@ -6,7 +6,7 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 
-class StandbyUserProcedureInput(state.IState):
+class StandbyExpirationDateInputWhenUpdate(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("返却予定日を入力してください","(yyyy/mm/dd)")

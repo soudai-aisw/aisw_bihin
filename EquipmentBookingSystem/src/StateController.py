@@ -54,7 +54,7 @@ class StateController():
             self.__restart_timer()
 
         elapsed_time = time.time() - self.__start_time
-        if (5 < elapsed_time):
+        if (30 < elapsed_time):
             timeout_detected = True
             self.__restart_timer()
 

@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-if __name__ == "__main__":
-    import time
-    import sys
-    sys.path.append('../')
-    sys.path.append('../../')
-
 import state as state
 import dev.display.Console as Console
 import dev.input as input
@@ -44,24 +38,3 @@ class StandbyUpdateEquipmentIdInput(state.IState):
 
     def should_exit(self):
             return self.__input.submitted()
-
-def debug_this_module():
-    Console.clear()
-    temp = StandbyUpdateEquipmentIdInput()
-    temp2 = input.PressedKey()
-
-    temp.entry()
-    time.sleep(0.010)
-
-    while True:
-        time.sleep(0.010)
-        temp2.capture()
-        temp.do()
-        if (temp.should_exit()):
-            temp.exit()
-            break
-
-if __name__ == "__main__":
-    help(debug_this_module)
-    time.sleep(1)
-    debug_this_module()
