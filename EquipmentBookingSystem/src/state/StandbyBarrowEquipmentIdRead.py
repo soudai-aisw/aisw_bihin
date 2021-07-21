@@ -18,7 +18,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
         Console.puts(">", end="")
         # self.__get_string = db.DBmatching_EmpIDtoEmpNo
         # デバッグ用
-        self.__get_string = 2
+        self.__get_string = 1
         if self.__get_string != "":
             self.__submitted = True
 
@@ -39,7 +39,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
         if rfid_return == 1:
-            self.__get_next_state = state.StandbyExpirationDateInputWhenBarrow() # ここのクラス名ミスってるから飛べない。
+            self.__get_next_state = state.StandbyExpirationDateInputWhenBarrow()
 
         # かざされたRFIDがDB上貸し出されている場合
         if rfid_return == 2:
