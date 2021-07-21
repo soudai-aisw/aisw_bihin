@@ -17,7 +17,16 @@ import cmn.des_pattern as despattern
 
 
 # windows専用
-import msvcrt
+import platform
+if (platform.system() == 'Windows'):
+    import msvcrt
+    
+else:
+    import readchar
+    from dev.input.pi_kbhit import *
+    atexit.register(set_normal_term)
+    set_curses_term()
+
 
 # 入力ストリームは1つしかなくリソース競合するためSingletonで実装
 
@@ -35,11 +44,19 @@ class SingletonKeyboard(threading.Thread, despattern.Singleton):
 
         while not self.__is_finished:
             with self.__lock:  # Excrusive area
-                if msvcrt.kbhit():  # The condition becomes true when any key is pressed
-                    self.__pressed_count += 1
-                    self.__last_pressed_key = msvcrt.getch()  # Get keyboard input
-
-            time.sleep(0.010)
+                # For Windows
+                if (platform.system() == 'Windows'):
+                
+                    if msvcrt.kbhit():  # The condition becomes true when any key is pressed
+                        self.__pressed_count += 1
+                        self.__last_pressed_key = msvcrt.getch()  # Get keyboard input
+                    time.sleep(0.010)
+                    
+                else:
+                    if kbhit():
+                        self.__pressed_count += 1
+                        self.__last_pressed_key = getch()  # Get keyboard input
+                    time.sleep(0.010)
 
     def is_finished(self):
         return self.__is_finished
