@@ -13,6 +13,7 @@ import db.matching.DBmatching as db
 
 class StandbyReturnEquipmentIdRead(state.IState):
     def entry(self):
+        self.__input = input.UserInputReader()
         Console.puts("返却する備品のRFIDをかざしてください")
         Console.puts(">",end="")
         # self.__get_string = db.DBmatching_EmpIDtoEmpNo
@@ -22,7 +23,7 @@ class StandbyReturnEquipmentIdRead(state.IState):
             self.__submitted = True
 
     def do(self):
-        self.__capture()
+        self.__input.capture()
 
     def exit(self):
 

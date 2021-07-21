@@ -13,6 +13,7 @@ import db.matching.DBmatching as db
 
 class StandbyBarrowEquipmentIdRead(state.IState):
     def entry(self):
+        self.__input = input.UserInputReader()
         Console.clear()
         Console.puts("借用する備品のRFIDをかざしてください")
         Console.puts(">", end="")
@@ -24,7 +25,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
 
 
     def do(self):
-        self.__capture()
+        self.__input.capture()
 
     def exit(self):
 
