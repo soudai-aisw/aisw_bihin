@@ -7,6 +7,7 @@ from .Exit import *
 from .PreExit import *
 from .StandbyUserIdInput import *
 from .StandbyUserProcedureInput import *
+from .StandbyBarrowEquipmentIdRead import *
 from .StandbyUpdateEquipmentIdInput import *
 from .StandbyReturnEquipmentIdRead import *
 from .StandbyExpirationDateInputWhenUpdate import *

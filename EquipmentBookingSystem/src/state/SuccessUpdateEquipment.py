@@ -30,8 +30,8 @@ class SuccessUpdateEquipment(state.IState):
         pass
 
     def get_next_state(self):
-        #とりあえずStandbyUserProcedureInputに飛ばしとく
-        return state.StandbyUserProcedureInput()
+        # 連続で更新処理を行うためID入力へ遷移
+        return state.StandbyUpdateEquipmentIdInput()
 
     def should_exit(self):
         #何か押されたら Or 3sで飛ぶ

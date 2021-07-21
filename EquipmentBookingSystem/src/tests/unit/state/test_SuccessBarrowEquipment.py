@@ -6,10 +6,10 @@ from unittest import TestCase
 from unittest.mock import patch, MagicMock
 
 
-class TestSuccessUpdateEquipment(TestCase):
+class TestSuccessBarrowEquipment(TestCase):
 
     def setUp(self):
-        self.state = state.SuccessUpdateEquipment()
+        self.state = state.SuccessBarrowEquipment()
         state.CommonResource.employeeId = "0079049"
         state.CommonResource.equipmentId = "00-00-00-00"
         state.CommonResource.expirationDate = "21/07/19"
@@ -33,7 +33,7 @@ class TestSuccessUpdateEquipment(TestCase):
             self.assertEqual(self.state.should_exit(), True)
 
         # Test the state of the next transition destination.
-        self.assertIsInstance(self.state.get_next_state(), state.StandbyUpdateEquipmentIdInput)
+        self.assertIsInstance(self.state.get_next_state(), state.StandbyBarrowEquipmentIdRead)
 
     def test_exit_by_timeout(self):
         timeout = 3
@@ -65,4 +65,4 @@ class TestSuccessUpdateEquipment(TestCase):
             self.assertEqual(self.state.should_exit(), True)
 
         # Test the state of the next transition destination.
-        self.assertIsInstance(self.state.get_next_state(), state.StandbyUpdateEquipmentIdInput)
+        self.assertIsInstance(self.state.get_next_state(), state.StandbyBarrowEquipmentIdRead)
