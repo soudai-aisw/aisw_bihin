@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 
+
+import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
@@ -18,10 +20,8 @@ class StandbyExpirationDateInputWhenBarrow(state.IState):
 
     def exit(self):
         return_date = self.__input.get_string()
-        if( "1" == procedure_type ):
-            Console.puts("返却予定日")
-            Console.puts(return_date)
-            Console.puts("を受理しました")
+        Console.puts("返却予定日",return_date,"を受理しました")
+        time.sleep(1.500)
         state.CommonResource.expirationDate = return_date
 
     def get_next_state(self):
