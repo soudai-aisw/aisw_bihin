@@ -7,6 +7,7 @@ if __name__ == "__main__":
     sys.path.append('../')
     sys.path.append('../../')
 
+import platform
 import dev.display.Console as Console
 import dev.input as input
 
@@ -43,7 +44,11 @@ class PressedKey():
         return self.__pressed_key == b'\x1b'
 
     def is_enter(self):
-        return self.__pressed_key == b'\r'
+        if (platform.system() == 'Windows'):
+            return self.__pressed_key == b'\r' 
+        
+        else:
+            return self.__pressed_key == '\n'
 
     def is_delete(self):
         return self.__pressed_key == b'\x08'
