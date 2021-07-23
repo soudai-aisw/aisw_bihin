@@ -41,17 +41,22 @@ class PressedKey():
         return self.__pressed_key != ""
 
     def is_escape(self):
-        return self.__pressed_key == b'\x1b'
+        if (platform.system() == 'Windows'):
+            return self.__pressed_key == b'\x1b'
+        else:
+            return self.__pressed_key == '\x1b'
 
     def is_enter(self):
         if (platform.system() == 'Windows'):
             return self.__pressed_key == b'\r' 
-        
         else:
             return self.__pressed_key == '\n'
 
     def is_delete(self):
-        return self.__pressed_key == b'\x08'
+        if (platform.system() == 'Windows'):
+            return self.__pressed_key == b'\x08'
+        else:
+            return self.__pressed_key == '\x08'
 
 def debug_this_module():
     Console.clear()
