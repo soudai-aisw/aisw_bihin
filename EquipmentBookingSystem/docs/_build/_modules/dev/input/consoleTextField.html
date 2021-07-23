@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>dev.input.consoleTextField &mdash; EquipmentBookingSystem v1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> EquipmentBookingSystem
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../StateController.html">StateController module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cmn.html">cmn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../db.html">db package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev.html">dev package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../state.html">state package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests.html">tests package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EquipmentBookingSystem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dev.input.consoleTextField</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dev.input.consoleTextField</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+
+
+<span class="kn">import</span> <span class="nn">dev.display.Console</span> <span class="k">as</span> <span class="nn">Console</span>
+<span class="kn">import</span> <span class="nn">dev.input</span> <span class="k">as</span> <span class="nn">input</span>
+
+
+<div class="viewcode-block" id="ConsoleTextField"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.ConsoleTextField">[docs]</a><span class="k">class</span> <span class="nc">ConsoleTextField</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">IUserInputReader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;コンソール画面上でキーボードから文字列を受け取るクラスです。</span>
+
+<span class="sd">    captureメソッドを周期的にコールしてキーボード入力を監視してください。</span>
+<span class="sd">    エンターキーが押下されたとき、submittedがTrueとなります。</span>
+<span class="sd">    ユーザが入力した文字列はget_stringを用いて受け取ることができます。</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; consoleTextField = ConsoleTextField()</span>
+<span class="sd">        &gt;&gt;&gt; while not consoleTextField.submitted(): # エンターキーが入力されるまで繰り返す</span>
+<span class="sd">        &gt;&gt;&gt;     consoleTextField.capture()          # キーボード入力を監視する</span>
+<span class="sd">        &gt;&gt;&gt;     time.sleep(0.010)</span>
+<span class="sd">        &gt;&gt;&gt; print(consoleTextField.get_string())    # 入力された文字列を表示する</span>
+<span class="sd">        Hello !!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">PressedKey</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__submitted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="ConsoleTextField.capture"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.ConsoleTextField.capture">[docs]</a>    <span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;キーボード入力を監視します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            (void): 無し</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            void</span>
+<span class="sd">            </span>
+<span class="sd">        Note:</span>
+<span class="sd">            singletonKeyboardスレッドの実行周期より遅い場合、入力を取りこぼす可能性があります。</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">is_enter</span><span class="p">():</span>
+                <span class="c1"># Submit keyboard input</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__submitted</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span><span class="p">:</span>
+                    <span class="n">Console</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># New line</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">is_escape</span><span class="p">():</span>
+                <span class="c1"># Clear buffer</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span><span class="p">:</span>
+                    <span class="n">Console</span><span class="o">.</span><span class="n">remove_line</span><span class="p">()</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">is_delete</span><span class="p">():</span>
+                <span class="c1"># Remove a last charcter</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__string</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span><span class="p">:</span>
+                        <span class="n">Console</span><span class="o">.</span><span class="n">remove_char</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Join a character to last position</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pressed_key</span><span class="o">.</span><span class="n">get</span><span class="p">()))</span>
+                <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">isascii</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__string</span> <span class="o">+=</span> <span class="n">key</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span><span class="p">:</span>
+                        <span class="n">Console</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__updated</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="ConsoleTextField.get_string"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.ConsoleTextField.get_string">[docs]</a>    <span class="k">def</span> <span class="nf">get_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;バッファに蓄積されている文字列を返します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            (void): 無し</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: バッファに蓄積されている文字列</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__string</span></div>
+
+<div class="viewcode-block" id="ConsoleTextField.submitted"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.ConsoleTextField.submitted">[docs]</a>    <span class="k">def</span> <span class="nf">submitted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;エンターキーが押されたときTrueを返します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            (void): 無し</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: エンターキーが押されたか</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__submitted</span></div>
+
+<div class="viewcode-block" id="ConsoleTextField.display_in_real_time"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.ConsoleTextField.display_in_real_time">[docs]</a>    <span class="k">def</span> <span class="nf">display_in_real_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;キーボード入力をリアルタイムにコンソール出力すべきか否かを切り替えます。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            enabled (bool): Trueであればリアルタイム出力を行います。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            void</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__is_real_time_display_mode</span> <span class="o">=</span> <span class="n">enabled</span></div></div>
+
+
+<div class="viewcode-block" id="debug_this_module"><a class="viewcode-back" href="../../../dev.input.html#dev.input.consoleTextField.debug_this_module">[docs]</a><span class="k">def</span> <span class="nf">debug_this_module</span><span class="p">():</span>
+    <span class="n">Console</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="n">text_field</span> <span class="o">=</span> <span class="n">ConsoleTextField</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">text_field</span><span class="o">.</span><span class="n">submitted</span><span class="p">():</span>
+        <span class="n">text_field</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.010</span><span class="p">)</span>
+
+    <span class="n">Console</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;Your input is :&quot;</span><span class="p">,</span> <span class="n">text_field</span><span class="o">.</span><span class="n">get_string</span><span class="p">())</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">del</span> <span class="n">text_field</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">help</span><span class="p">(</span><span class="n">debug_this_module</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">debug_this_module</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Helve.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -13,6 +13,22 @@ import dev.input as input
 
 
 class ConsoleTextField(input.IUserInputReader):
+    """コンソール画面上でキーボードから文字列を受け取るクラスです。
+
+    captureメソッドを周期的にコールしてキーボード入力を監視してください。
+    エンターキーが押下されたとき、submittedがTrueとなります。
+    ユーザが入力した文字列はget_stringを用いて受け取ることができます。
+
+    Examples:
+
+        >>> consoleTextField = ConsoleTextField()
+        >>> while not consoleTextField.submitted(): # エンターキーが入力されるまで繰り返す
+        >>>     consoleTextField.capture()          # キーボード入力を監視する
+        >>>     time.sleep(0.010)
+        >>> print(consoleTextField.get_string())    # 入力された文字列を表示する
+        Hello !!
+    """
+
     def __init__(self):
         self.__pressed_key = input.PressedKey()
         self.__string = ""
@@ -20,6 +36,20 @@ class ConsoleTextField(input.IUserInputReader):
         self.__is_real_time_display_mode = True
 
     def capture(self):
+        """キーボード入力を監視します。
+
+        Args:
+            (void): 無し
+
+        Returns:
+            void
+            
+        Note:
+            singletonKeyboardスレッドの実行周期より遅い場合、入力を取りこぼす可能性があります。
+
+        """
+
+
         self.__pressed_key.capture()
 
         if self.__pressed_key.exists():
@@ -54,12 +84,39 @@ class ConsoleTextField(input.IUserInputReader):
             self.__updated = False
 
     def get_string(self):
+        """バッファに蓄積されている文字列を返します。
+
+        Args:
+            (void): 無し
+
+        Returns:
+            str: バッファに蓄積されている文字列
+
+        """
         return self.__string
 
     def submitted(self):
+        """エンターキーが押されたときTrueを返します。
+
+        Args:
+            (void): 無し
+
+        Returns:
+            bool: エンターキーが押されたか
+
+        """
         return self.__submitted
 
     def display_in_real_time(self, enabled):
+        """キーボード入力をリアルタイムにコンソール出力すべきか否かを切り替えます。
+
+        Args:
+            enabled (bool): Trueであればリアルタイム出力を行います。
+
+        Returns:
+            void
+
+        """
         self.__is_real_time_display_mode = enabled
 
 
