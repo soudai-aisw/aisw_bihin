@@ -25,7 +25,7 @@ if (platform.system() == 'Windows'):
 
 else:
     import RPi.GPIO as GPIO
-    import MFRC522
+    import dev.input.MFRC522 as MFRC522
     import signal
 
     # Create an object of the class MFRC522
@@ -33,7 +33,6 @@ else:
 
     # Not implemented yet.
     class RFIDReader():
-    ##class RFIDReader(input.IUserInputReader):
 
         #        
         def __init__(self):
@@ -46,9 +45,8 @@ else:
             GPIO.cleanup()
             
             MIFAREReader = MFRC522.MFRC522()
-            self.__continue_reading = True
             self.__submitted = False
-            while self.__continue_reading:
+            if self.__continue_reading:
             
                 (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
                 (status,uid) = MIFAREReader.MFRC522_Anticoll()
@@ -56,9 +54,9 @@ else:
                 if status == MIFAREReader.MI_OK:
                     self.__ret_uid = str(uid[0]) + str(uid[1]) + str(uid[2]) + str(uid[3])
                     self.__continue_reading = False
+                    self.__submitted = True
             GPIO.cleanup()
-            self.__submitted = True
-        
+            
         #
         def get_string(self):
             return self.__ret_uid
