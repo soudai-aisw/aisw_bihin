@@ -43,20 +43,19 @@ class SingletonKeyboard(threading.Thread, despattern.Singleton):
         self.__is_finished = False
 
         while not self.__is_finished:
-            with self.__lock:  # Excrusive area
-                # For Windows
-                if (platform.system() == 'Windows'):
-                
+            # For Windows
+            if (platform.system() == 'Windows'):
+                with self.__lock:  # Excrusive area
                     if msvcrt.kbhit():  # The condition becomes true when any key is pressed
                         self.__pressed_count += 1
                         self.__last_pressed_key = msvcrt.getch()  # Get keyboard input
-                    time.sleep(0.010)
-                    
-                else:
+            else:
+                with self.__lock:  # Excrusive area
                     if kbhit():
                         self.__pressed_count += 1
                         self.__last_pressed_key = getch()  # Get keyboard input
-                    time.sleep(0.010)
+
+            time.sleep(0.010)
 
     def is_finished(self):
         return self.__is_finished
