@@ -24,6 +24,8 @@ class SuccessReturnEquipment(state.IState):
         pass
 
     def get_next_state(self):
+        Console.clear()
+        Console.puts("続けて他の機器の返却処理が実施できます。")        
         return state.StandbyReturnEquipmentIdRead()
 
     def should_exit(self):

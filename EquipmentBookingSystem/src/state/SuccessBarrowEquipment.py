@@ -30,6 +30,8 @@ class SuccessBarrowEquipment(state.IState):
         pass
 
     def get_next_state(self):
+        Console.clear()
+        Console.puts("続けて他の機器の貸出処理が実施できます。")
         # 連続で貸出処理を行うためID入力へ遷移
         return state.StandbyBarrowEquipmentIdRead()
 

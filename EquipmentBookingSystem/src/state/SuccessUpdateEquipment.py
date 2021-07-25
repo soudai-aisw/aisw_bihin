@@ -19,7 +19,7 @@ class SuccessUpdateEquipment(state.IState):
         Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
 
         Console.puts("上記の情報で備品の更新手続きが完了しました。")
-        Console.puts(">", end="")
+
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
 
@@ -30,6 +30,8 @@ class SuccessUpdateEquipment(state.IState):
         pass
 
     def get_next_state(self):
+        Console.clear()
+        Console.puts("続けて他の機器の更新処理が実施できます。")
         # 連続で更新処理を行うためID入力へ遷移
         return state.StandbyUpdateEquipmentIdInput()
 
