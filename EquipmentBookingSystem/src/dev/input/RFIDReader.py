@@ -29,7 +29,7 @@ else:
     import signal
 
     # Create an object of the class MFRC522
-    # MIFAREReader = MFRC522.MFRC522()
+    MIFAREReader = MFRC522.MFRC522()
 
     # Not implemented yet.
     class RFIDReader():
@@ -38,13 +38,13 @@ else:
         def __init__(self):
             self.__continue_reading = True
             self.__submitted = False
-            self.__ret_uid = ""        
-        #
-        def capture(self):
+            self.__ret_uid = ""
             GPIO.setwarnings(False)
             GPIO.cleanup()
             
-            MIFAREReader = MFRC522.MFRC522()
+        #
+        def capture(self):
+
             self.__submitted = False
             if self.__continue_reading:
             
@@ -55,7 +55,6 @@ else:
                     self.__ret_uid = str(uid[0]) + str(uid[1]) + str(uid[2]) + str(uid[3])
                     self.__continue_reading = False
                     self.__submitted = True
-            GPIO.cleanup()
             
         #
         def get_string(self):
