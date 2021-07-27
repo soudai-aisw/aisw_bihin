@@ -19,7 +19,6 @@ class SuccessBarrowEquipment(state.IState):
         Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
 
         Console.puts("上記の情報で備品の貸出手続きが完了しました。")
-        Console.puts(">", end="")
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
 

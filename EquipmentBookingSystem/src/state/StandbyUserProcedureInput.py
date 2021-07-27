@@ -20,16 +20,15 @@ class StandbyUserProcedureInput(state.IState):
     def exit(self):
         procedure_type = self.__input.get_string()
         if( "1" == procedure_type ):
-            Console.puts("借用ですね")
-#            self.__get_next_state = state.StandbyBarrowEquipmentIdRead()
+            self.__get_next_state = state.StandbyBarrowEquipmentIdRead()
         elif( "2" == procedure_type ):
-            Console.puts("返却ですね")
-#            self.__get_next_state = state.StandbyReturnEquipmentIdRead()
+            self.__get_next_state = state.StandbyReturnEquipmentIdRead()
         elif( "3" == procedure_type ):
-#            Console.puts("更新ですね")
             self.__get_next_state = state.StandbyUpdateEquipmentIdInput()
         else:
-            Console.puts("無効な入力ですね")
+            Console.puts("不正なデータが入力されました。")
+            Console.puts("再度入力してください。")
+            Console.puts("")
 
         state.CommonResource.enquiry = procedure_type
 

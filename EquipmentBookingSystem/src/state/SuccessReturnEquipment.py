@@ -10,10 +10,8 @@ class SuccessReturnEquipment(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("ユーザID  ：",state.CommonResource.employeeId)
-        Console.puts("機材ID    ：",state.CommonResource.equipmentId)
-        Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
+        Console.puts("機材ID    ：",state.CommonResource.equipmentId,"\n")
         Console.puts("上記の情報で備品の返却手続きが完了しました。")
-        Console.puts(">", end="")
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
 

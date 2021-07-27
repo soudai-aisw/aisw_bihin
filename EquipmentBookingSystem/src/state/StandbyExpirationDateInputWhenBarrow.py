@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
-
-
 import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import db.Registration.DBregistration as dbregist
 
 class StandbyExpirationDateInputWhenBarrow(state.IState):
     def entry(self):
@@ -20,12 +19,20 @@ class StandbyExpirationDateInputWhenBarrow(state.IState):
 
     def exit(self):
         return_date = self.__input.get_string()
-        Console.puts("返却予定日",return_date,"を受理しました")
-        time.sleep(1.500)
-        state.CommonResource.expirationDate = return_date
+        # この間に返却日の内容が正しいかチェックを実施する処理を入れる（レベルアップ）
+        result = dbregist.DBregistration_Borrow(state.CommonResource.employeeId,state.CommonResource.equipmentId,return_date)
+        if result == True:
+            Console.puts("返却予定日",return_date,"を受理しました")
+            time.sleep(1.500)
+            state.CommonResource.expirationDate = return_date
+            self.__get_next_state = state.SuccessBarrowEquipment()
+        else:
+            Console.puts("借用の受理に失敗しました。")
+            Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。","\n")
+            self.__get_next_state = state.ErrorHasOccurred()
 
     def get_next_state(self):
-        return state.SuccessBarrowEquipment()
+        return self.__get_next_state
 
     def should_exit(self):
         return self.__input.submitted()

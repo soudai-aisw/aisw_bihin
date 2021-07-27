@@ -3,9 +3,11 @@
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import db.matching.DBmatching as db
 
 class StandbyUpdateEquipmentIdInput(state.IState):
     def entry(self):
+        Console.clear()
         Console.puts("更新する機材のIDをキーボードで入力してください")
         Console.puts(">",end="")
         self.__input = input.UserInputReader()
@@ -19,18 +21,36 @@ class StandbyUpdateEquipmentIdInput(state.IState):
         # キーボード情報取得
         key_data = self.__input.get_string()
 
-        #ここにDBと照合する処理を入れる（暫定で直値を設定）
-        key_return = True
+        #-----DBの戻り値-----
+        # 0: 未登録
+        # 1：借用可能
+        # 2：借用中
+        # 3：故障中
+        #--------------------
 
-        # 照合した結果：登録されている備品と一致した
-        if key_return == True:
-           self.__get_next_state = state.StandbyExpirationDateInputWhenUpdate()
+        rfid_return = db.DBmatching_EquIDtoEquStatus(key_data)
 
-        # 照合した結果：何らかの原因で登録されている備品と一致しなかった
-        if key_return == False:
-            Console.puts("機材ID「%s」を受理できませんでした。" % key_data)
-            Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。")
-        #    Console.puts(">",end="")
+        # かざされたRFIDがDB上貸し出されている場合
+        if rfid_return == 2:
+            state.CommonResource.equipmentId = key_data
+            self.__get_next_state = state.StandbyExpirationDateInputWhenUpdate()
+
+        # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
+        if rfid_return == 1:
+            Console.puts("まだ貸し出しされていない備品です。","\n")
+            Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
+            self.__get_next_state = state.ErrorHasOccurred()
+
+        # かざされたRFIDがDB上登録されていない場合
+        if rfid_return == 0:
+            Console.puts("登録されていない備品です。","\n")
+            Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
+            self.__get_next_state = state.ErrorHasOccurred()
+
+        # かざされたRFIDが故障中の場合(今は仮値)
+        if rfid_return == 3:
+            Console.puts("故障中につき貸し出し対象外の備品です。")
+            Console.puts("認識と異なる場合は、システム管理者に問い合わせください","\n")
             self.__get_next_state = state.ErrorHasOccurred()
 
     def get_next_state(self):

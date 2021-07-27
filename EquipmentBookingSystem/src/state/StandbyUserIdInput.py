@@ -22,15 +22,13 @@ class StandbyUserIdInput(state.IState):
     def exit(self):
         employee_id = self.__input.get_string()
         if (employee_id != ""):
-            Console.puts("社員番号「", employee_id, "」を問い合わせます")
             match_id = db.DBmatching_EmpIDtoEmpNo(employee_id)
 
             # 現状は「0079522」固定値返却なので必ず成功
             if (match_id == "0079522"):
-                # ここに社員名をDBから取得して表示したい
+                # ここに社員名をDBから取得して表示したい（レベルアップ）
               #  name = db.名前取得(match_id)
-              #  Console.puts("ようこそ「%s」さん")
-                Console.puts(" ")
+                Console.puts("ようこそ",match_id,"さん","\n")
                 time.sleep(1.500)
                 state.CommonResource.employeeId = match_id
                 self.__get_next_state = state.StandbyUserProcedureInput()
