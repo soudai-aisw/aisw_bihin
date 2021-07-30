@@ -56,7 +56,7 @@ class PressedKey():
         if (platform.system() == 'Windows'):
             return self.__pressed_key == b'\x08'
         else:
-            return self.__pressed_key == '\x08'
+            return self.__pressed_key == '\x7f'
 
 def debug_this_module():
     Console.clear()
