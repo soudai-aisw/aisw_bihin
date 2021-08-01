@@ -11,7 +11,7 @@ class StandbyUserProcedureInput(state.IState):
         Console.clear()
         Console.puts("手続き内容を選択してください","1:借用","2:返却","3:更新")
         Console.puts(">", end="")
-        self.__input = input.UserInputReader()
+        self.__input = input.ConsoleTextField()
         self.__get_next_state = state.ErrorHasOccurred()
 
     def do(self):
