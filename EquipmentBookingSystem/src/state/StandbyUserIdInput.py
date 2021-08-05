@@ -24,8 +24,8 @@ class StandbyUserIdInput(state.IState):
         if (employee_id != ""):
             match_id = db.DBmatching_EmpIDtoEmpNo(employee_id)
 
-            # 現状は「0079522」固定値返却なので必ず成功
-            if (match_id == "0079522"):
+            # False以外=登録済みユーザー
+            if (match_id != False):
                 # ここに社員名をDBから取得して表示したい（レベルアップ）
               #  name = db.名前取得(match_id)
                 Console.puts("ようこそ",match_id,"さん","\n")
