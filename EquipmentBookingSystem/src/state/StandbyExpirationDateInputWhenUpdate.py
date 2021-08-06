@@ -20,7 +20,7 @@ class StandbyExpirationDateInputWhenUpdate(state.IState):
     def exit(self):
         return_date = self.__input.get_string()
         # この間に返却日の内容が正しいかチェックを実施する処理を入れる（レベルアップ）
-        result = dbregist.DBregistration_Borrow(state.CommonResource.employeeId,state.CommonResource.equipmentId,return_date)
+        result = dbregist.DBregistration_Update(state.CommonResource.equipmentId,return_date)
         if result == True:
             Console.puts("返却予定日",return_date,"を受理しました")
             time.sleep(1.500)
