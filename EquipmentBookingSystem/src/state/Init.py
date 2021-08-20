@@ -25,6 +25,8 @@ class Init(state.IState):
     def get_next_state(self):
         if self.__pressed_key.is_escape():
             return state.PreExit()
+        if self.__pressed_key.get() == b'A':
+            return state.LoginAsAdmin()
         else:
             return state.StandbyUserIdInput()
 

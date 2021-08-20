@@ -18,3 +18,5 @@ from .SuccessBarrowEquipment import *
 from .SuccessUpdateEquipment import *
 from .SuccessReturnEquipment import *
 from .GotoNextAfterWaiting import *
+from .LoginAsAdmin import *
+from .Admin import *
