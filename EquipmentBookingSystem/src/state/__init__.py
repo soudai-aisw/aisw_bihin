@@ -17,3 +17,4 @@ from .commonResource import *
 from .SuccessBarrowEquipment import *
 from .SuccessUpdateEquipment import *
 from .SuccessReturnEquipment import *
+from .GotoNextAfterWaiting import *
