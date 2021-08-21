@@ -22,6 +22,7 @@ class Command(Enum):
     SHOW_USER = auto()
     SHOW_EQUIPMENT = auto()
     ADD_EQUIPMENT = auto()
+    SHOW_HELP = auto()
 
 
 class Admin(state.IState):
@@ -56,6 +57,10 @@ class Admin(state.IState):
                 get_equipment_db_path(), encoding="cp932"))
         elif cmd == Command.ADD_EQUIPMENT:
             Console.puts("Add equipment command is not implemented yet.")
+        elif cmd == Command.SHOW_HELP:
+            Console.puts("exit        Exit Admin Mode")
+            Console.puts("show[-opt]  Show List -u:Users -e:Equipment")
+            Console.puts("add[-opt]   Add Item  -e:Equipmet")
 
     def get_next_state(self):
         if self.__cmd == Command.EXIT:
@@ -85,7 +90,12 @@ class Admin(state.IState):
                     return Command.ADD_EQUIPMENT
                 else:
                     return Command.INVALID_ARG
+
+            if commands[0] == "help":
+                return Command.SHOW_HELP
+
             else:
                 return Command.INVALID_CMD
+
         except:
             return Command.FATAL
