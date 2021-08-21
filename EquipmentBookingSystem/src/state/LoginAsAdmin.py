@@ -6,6 +6,7 @@ import hashlib
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import config
 
 
 class LoginAsAdmin(state.IState):
@@ -40,4 +41,4 @@ class LoginAsAdmin(state.IState):
         hashed_pw = hashlib.md5(hashlib.md5(
             raw_pw.encode()).hexdigest().encode()).hexdigest()
 
-        return hashed_pw == '0936eabb96a04812fe0b3729a784264b'
+        return hashed_pw == config.get_hashed_login_password_with_salt()

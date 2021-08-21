@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 
+# path
 def get_project_root():
     return os.path.join(get_src_dir(), "..")
 
@@ -16,8 +17,7 @@ def get_user_db_path():
 def get_equipment_db_path():
     return os.path.join(get_database_dir(), "db_itemlist.csv")
 
-
-
+# time
 def get_time_of_main_cycle():
     return 0.010
 
@@ -29,4 +29,12 @@ def get_time_of_message_display():
 
 def get_time_of_error_display():
     return 5
+
+# login
+def get_key_of_to_enter_login_form():
+    return b'A'
+
+def get_hashed_login_password_with_salt():
+    return '0936eabb96a04812fe0b3729a784264b'
+
 

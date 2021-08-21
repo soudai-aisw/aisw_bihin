@@ -5,6 +5,7 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import config
 
 
 class Init(state.IState):
@@ -25,7 +26,7 @@ class Init(state.IState):
     def get_next_state(self):
         if self.__pressed_key.is_escape():
             return state.PreExit()
-        if self.__pressed_key.get() == b'A':
+        if self.__pressed_key.get() == config.get_key_of_to_enter_login_form:
             return state.LoginAsAdmin()
         else:
             return state.StandbyUserIdInput()
