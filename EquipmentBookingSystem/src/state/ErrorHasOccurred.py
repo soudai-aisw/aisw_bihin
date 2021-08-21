@@ -5,6 +5,8 @@ import time
 
 import dev.display.Console as Console
 import dev.input as input
+import config
+
 
 class ErrorHasOccurred(state.IState):
     def entry(self):
@@ -26,4 +28,4 @@ class ErrorHasOccurred(state.IState):
     # 3秒経過でタイムアウト
     def __timeout_detected(self):
         elapsed_time = time.time() - self.__start_time
-        return ( 3 < elapsed_time)
+        return (config.get_time_of_error_display() < elapsed_time)

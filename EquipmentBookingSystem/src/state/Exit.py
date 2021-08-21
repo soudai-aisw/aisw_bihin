@@ -4,6 +4,7 @@
 import state as state
 import dev.display.Console as Console
 
+
 class Exit(state.IState):
 
     def entry(self):
@@ -20,4 +21,3 @@ class Exit(state.IState):
 
     def should_exit(self):
         return False
-

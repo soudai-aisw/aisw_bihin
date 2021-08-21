@@ -43,12 +43,11 @@ class ConsoleTextField(input.IUserInputReader):
 
         Returns:
             void
-            
+
         Note:
             singletonKeyboardスレッドの実行周期より遅い場合、入力を取りこぼす可能性があります。
 
         """
-
 
         self.__pressed_key.capture()
 
@@ -68,7 +67,7 @@ class ConsoleTextField(input.IUserInputReader):
 
             elif self.__pressed_key.is_delete():
                 # Remove a last charcter
-                if ( len(self.__string) > 0 ):
+                if (len(self.__string) > 0):
                     self.__string = self.__string[:-1]
                     if self.__is_real_time_display_mode:
                         Console.remove_char()

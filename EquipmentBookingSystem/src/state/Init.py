@@ -32,4 +32,3 @@ class Init(state.IState):
 
     def should_exit(self):
         return self.__pressed_key.exists()
-

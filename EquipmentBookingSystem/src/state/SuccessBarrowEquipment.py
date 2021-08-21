@@ -10,13 +10,15 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import config
+
 
 class SuccessBarrowEquipment(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts("ユーザID  ：",state.CommonResource.employeeId)
-        Console.puts("機材ID    ：",state.CommonResource.equipmentId)
-        Console.puts("返却予定日：",state.CommonResource.expirationDate,"\n")
+        Console.puts("ユーザID  ：", state.CommonResource.employeeId)
+        Console.puts("機材ID    ：", state.CommonResource.equipmentId)
+        Console.puts("返却予定日：", state.CommonResource.expirationDate, "\n")
 
         Console.puts("上記の情報で備品の貸出手続きが完了しました。")
         self.__start_time = time.time()
@@ -35,15 +37,15 @@ class SuccessBarrowEquipment(state.IState):
         return state.StandbyBarrowEquipmentIdRead()
 
     def should_exit(self):
-        #何か押されたら Or 3sで飛ぶ
         return self.__pressed_key.exists() or self.__timeout_detected()
- 
-    # 3秒経過でタイムアウト
+
     def __timeout_detected(self):
         elapsed_time = time.time() - self.__start_time
-        return (3 < elapsed_time)
+        return (config.get_time_of_message_display() < elapsed_time)
 
-#-----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+
 def debug_this_module():
     Console.clear()
     temp = SuccessBarrowEquipment()
@@ -58,6 +60,7 @@ def debug_this_module():
         if (temp.should_exit()):
             temp.exit()
             break
+
 
 if __name__ == "__main__":
     help(debug_this_module)

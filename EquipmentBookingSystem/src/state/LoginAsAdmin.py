@@ -7,6 +7,7 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 
+
 class LoginAsAdmin(state.IState):
     def entry(self):
         self.__text_field = input.ConsoleTextField()
@@ -36,6 +37,7 @@ class LoginAsAdmin(state.IState):
 
     def __hasSuccessLoggedIn(self):
         raw_pw = "#" + self.__text_field.get_string() + "#"
-        hashed_pw = hashlib.md5(hashlib.md5(raw_pw.encode()).hexdigest().encode()).hexdigest()
+        hashed_pw = hashlib.md5(hashlib.md5(
+            raw_pw.encode()).hexdigest().encode()).hexdigest()
 
         return hashed_pw == '0936eabb96a04812fe0b3729a784264b'

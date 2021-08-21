@@ -4,7 +4,7 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-
+import config
 
 class StateController():
     def __init__(self):
@@ -42,7 +42,7 @@ class StateController():
 
     def run(self):
         while not isinstance(self.__current, state.Exit):
-            time.sleep(0.010)
+            time.sleep(config.get_time_of_main_cycle())
             self.step()
 
     def __restart_timer(self):

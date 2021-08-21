@@ -15,3 +15,18 @@ def get_user_db_path():
 
 def get_equipment_db_path():
     return os.path.join(get_database_dir(), "db_itemlist.csv")
+
+
+
+def get_time_of_main_cycle():
+    return 0.010
+
+def get_time_of_timeout():
+    return 30
+
+def get_time_of_message_display():
+    return 3
+
+def get_time_of_error_display():
+    return 5
+

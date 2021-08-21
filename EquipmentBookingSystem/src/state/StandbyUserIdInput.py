@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 
-
 import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
 import db.matching.DBmatching as db
+
 
 class StandbyUserIdInput(state.IState):
     def entry(self):
@@ -28,10 +28,11 @@ class StandbyUserIdInput(state.IState):
             if (match_id != False):
                 # ここに社員名をDBから取得して表示したい（レベルアップ）
               #  name = db.名前取得(match_id)
-                Console.puts("ようこそ",match_id,"さん","\n")
+                Console.puts("ようこそ", match_id, "さん", "\n")
                 state.CommonResource.employeeId = match_id
                 self.__get_next_state = state.GotoNextAfterWaiting()
-                self.__get_next_state.set_next_state(state.StandbyUserProcedureInput())
+                self.__get_next_state.set_next_state(
+                    state.StandbyUserProcedureInput())
             else:
                 Console.puts("存在しない社員番号です")
                 Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。")

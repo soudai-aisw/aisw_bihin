@@ -2,6 +2,7 @@
 
 import state
 
+
 class CommonResource():
     ENQUIRY_INVALID = ""
     ENQUIRY_BORROW = "0"
@@ -20,4 +21,3 @@ class CommonResource():
         CommonResource.enquiry = CommonResource.ENQUIRY_INVALID       # 問い合わせ内容
         CommonResource.equipmentId = ""                 # 機材ID
         CommonResource.expirationDate = ""              # 返却予定日
-

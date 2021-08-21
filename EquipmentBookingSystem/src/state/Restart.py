@@ -5,6 +5,7 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
+import config
 
 
 class Restart(state.IState):
@@ -28,7 +29,6 @@ class Restart(state.IState):
     def should_exit(self):
         return self.__pressed_key.exists() or self.__timeout_detected()
 
-    # 3秒経過でタイムアウト
     def __timeout_detected(self):
         elapsed_time = time.time() - self.__start_time
-        return (3 < elapsed_time)
+        return (config.get_time_of_message_display() < elapsed_time)

@@ -48,7 +48,7 @@ class PressedKey():
 
     def is_enter(self):
         if (platform.system() == 'Windows'):
-            return self.__pressed_key == b'\r' 
+            return self.__pressed_key == b'\r'
         else:
             return self.__pressed_key == '\n'
 
@@ -57,6 +57,7 @@ class PressedKey():
             return self.__pressed_key == b'\x08'
         else:
             return self.__pressed_key == '\x7f'
+
 
 def debug_this_module():
     Console.clear()

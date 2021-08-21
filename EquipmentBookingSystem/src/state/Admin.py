@@ -13,6 +13,7 @@ from config import *
 
 from enum import Enum, auto
 
+
 class Command(Enum):
     FATAL = auto()
     INVALID_CMD = auto()
@@ -22,11 +23,12 @@ class Command(Enum):
     SHOW_EQUIPMENT = auto()
     ADD_EQUIPMENT = auto()
 
+
 class Admin(state.IState):
     def entry(self):
         self.__text_field = input.ConsoleTextField()
-        
-        if not isinstance(CommonResource.prev_state , state.Admin):
+
+        if not isinstance(CommonResource.prev_state, state.Admin):
             Console.puts("")
             Console.puts("[Start admin mode]")
 
@@ -48,9 +50,10 @@ class Admin(state.IState):
         elif cmd == Command.EXIT:
             Console.puts("Bye !")
         elif cmd == Command.SHOW_USER:
-            Console.puts( pd.read_csv(get_user_db_path(),encoding = "cp932") )
+            Console.puts(pd.read_csv(get_user_db_path(), encoding="cp932"))
         elif cmd == Command.SHOW_EQUIPMENT:
-            Console.puts( pd.read_csv(get_equipment_db_path(),encoding = "cp932") )
+            Console.puts(pd.read_csv(
+                get_equipment_db_path(), encoding="cp932"))
         elif cmd == Command.ADD_EQUIPMENT:
             Console.puts("Add equipment command is not implemented yet.")
 
