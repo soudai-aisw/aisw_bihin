@@ -6,10 +6,8 @@ if __name__ == "__main__":
 #    sys.path.append('../../')
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import time
 import state as state
 import dev.display.Console as Console
-import dev.input as input
 import config
 
 
@@ -19,29 +17,24 @@ class SuccessBarrowEquipment(state.IState):
         Console.puts("ユーザID  ：", state.CommonResource.employeeId)
         Console.puts("機材ID    ：", state.CommonResource.equipmentId)
         Console.puts("返却予定日：", state.CommonResource.expirationDate, "\n")
-
-        Console.puts("上記の情報で備品の貸出手続きが完了しました。")
-        self.__start_time = time.time()
-        self.__pressed_key = input.PressedKey()
+        Console.puts("上記の情報で備品の貸出手続きが完了しました。\n")
+        Console.puts("続けて他の機器の貸出処理が実施できます。")
+        self.__get_next_state = state.ErrorHasOccurred()
 
     def do(self):
-        self.__pressed_key.capture()
-
-    def exit(self):
         pass
 
-    def get_next_state(self):
-        Console.clear()
-        Console.puts("続けて他の機器の貸出処理が実施できます。")
+    def exit(self):
+        self.__get_next_state = state.GotoNextAfterWaiting()
         # 連続で貸出処理を行うためID入力へ遷移
-        return state.StandbyBarrowEquipmentIdRead()
+        self.__get_next_state.set_next_state(
+            state.StandbyBarrowEquipmentIdRead())
+
+    def get_next_state(self):
+        return self.__get_next_state
 
     def should_exit(self):
-        return self.__pressed_key.exists() or self.__timeout_detected()
-
-    def __timeout_detected(self):
-        elapsed_time = time.time() - self.__start_time
-        return (config.get_time_of_message_display() < elapsed_time)
+        return True
 
 # -----------------------------------------------------------------------------
 
@@ -51,11 +44,8 @@ def debug_this_module():
     temp = SuccessBarrowEquipment()
 
     temp.entry()
-    time.sleep(0.010)
 
     while True:
-        time.sleep(0.010)
-
         temp.do()
         if (temp.should_exit()):
             temp.exit()
@@ -67,5 +57,4 @@ if __name__ == "__main__":
     state.CommonResource.employeeId = "0079049"
     state.CommonResource.equipmentId = "00-00-00-00"
     state.CommonResource.expirationDate = "21/07/15"
-    time.sleep(1)
     debug_this_module()
