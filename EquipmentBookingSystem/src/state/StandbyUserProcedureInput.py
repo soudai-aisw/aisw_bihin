@@ -10,7 +10,6 @@ from .commonResource import Enquiry
 class StandbyUserProcedureInput(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts(Enquiry.Borrow)
         Console.puts("手続き内容を選択してください", "{}:借用 {}:返却 {}:更新".format(
             Enquiry.Borrow, Enquiry.Return, Enquiry.Update))
         Console.puts(">", end="")
