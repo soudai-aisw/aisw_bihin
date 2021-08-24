@@ -38,19 +38,17 @@ class UserInputReader(input.IUserInputReader):
 def debug_this_module():
     Console.clear()
 
-    uir = UserInputReader()
+    uir = input.DateFormatedString( input.SunitizedString(UserInputReader()) )
 
     while not uir.submitted():
         uir.capture()
         time.sleep(0.010)
 
     Console.puts("Your input is :", uir.get_string())
-    time.sleep(3)
+    time.sleep(1)
 
     del uir
 
 
 if __name__ == "__main__":
-    help(debug_this_module)
-    time.sleep(1)
     debug_this_module()
