@@ -72,4 +72,4 @@ class Ledger():
     @property
     def _acceptable_object(self):
         raise NotImplementedError(
-            "Ledger must define '_primary_key' to use this base class")
+            "Ledger must define '_acceptable_object' to use this base class")
