@@ -7,10 +7,13 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 import config
-
+from logging import getLogger
 
 class LoginAsAdmin(state.IState):
     def entry(self):
+        self.__logger = getLogger(__name__)
+        self.__logger.info("LoginAsAdmin starts.")
+
         self.__text_field = input.ConsoleTextField()
         Console.clear()
         Console.puts("[Login as admin]")
@@ -25,10 +28,12 @@ class LoginAsAdmin(state.IState):
 
     def get_next_state(self):
         if self.__hasSuccessLoggedIn():
-            Console.puts("Login success.")
+            Console.puts("Login successful.")
+            self.__logger.info("Login successful.")
             return state.Admin()
         else:
             Console.puts("Login failed.")
+            self.__logger.info("Login failed.",)
             next = state.GotoNextAfterWaiting()
             next.set_next_state(state.LoginAsAdmin())
             return next

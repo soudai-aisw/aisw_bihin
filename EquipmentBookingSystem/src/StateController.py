@@ -5,9 +5,14 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 import config
+from logging import getLogger
+
 
 class StateController():
     def __init__(self):
+        self.__logger = getLogger(__name__)
+        self.__logger.info("StateController starts.")
+
         self.__current = state.Init()
         self.__current.entry()
         self.__start_time = time.time()
@@ -33,8 +38,11 @@ class StateController():
 
             self.__restart_timer()
 
+            self.__logger.info("Enter state of '%s'.", self.__current.__module__)
+
         elif not isinstance(self.__current, (state.Init, state.Restart)):
             if self.__timeout_detected() or self.__pressed_key.is_escape():
+                self.__logger.info("Timeout detected in '%s'", self.__current.__module__)
                 state.CommonResource.prev_state = self.__current
                 self.__current = state.Restart()
                 self.__current.entry()

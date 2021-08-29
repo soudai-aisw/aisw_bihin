@@ -10,6 +10,7 @@ if __name__ == "__main__":
 
 import dev.display.Console as Console
 import dev.input as input
+from logging import getLogger
 
 
 class ConsoleTextField(input.IUserInputReader):
@@ -30,6 +31,8 @@ class ConsoleTextField(input.IUserInputReader):
     """
 
     def __init__(self):
+        self.__logger = getLogger(__name__)
+
         self.__pressed_key = input.PressedKey()
         self.__string = ""
         self.__submitted = False
@@ -58,6 +61,7 @@ class ConsoleTextField(input.IUserInputReader):
                 self.__submitted = True
                 if self.__is_real_time_display_mode:
                     Console.puts("")  # New line
+                self.__logger.info("The user entered '%s'", self.__string)
 
             elif self.__pressed_key.is_escape():
                 # Clear buffer
