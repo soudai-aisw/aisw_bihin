@@ -5,6 +5,7 @@ from .pressedKey import *
 from .IUserInputReader import *
 from .UserInputReader import *
 from .consoleTextField import *
+from .passwordTextField import *
 from .RFIDReader import *
 from .inputString import *
 from .sunitizedString import *

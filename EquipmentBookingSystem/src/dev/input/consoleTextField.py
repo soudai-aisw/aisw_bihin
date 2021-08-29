@@ -33,10 +33,10 @@ class ConsoleTextField(input.IUserInputReader):
     def __init__(self):
         self.__logger = getLogger(__name__)
 
-        self.__pressed_key = input.PressedKey()
-        self.__string = ""
-        self.__submitted = False
-        self.__is_real_time_display_mode = True
+        self._pressed_key = input.PressedKey()
+        self._string = ""
+        self._submitted = False
+        self._is_real_time_display_mode = True
 
     def capture(self):
         """キーボード入力を監視します。
@@ -52,39 +52,39 @@ class ConsoleTextField(input.IUserInputReader):
 
         """
 
-        self.__pressed_key.capture()
+        self._pressed_key.capture()
 
-        if self.__pressed_key.exists():
+        if self._pressed_key.exists():
 
-            if self.__pressed_key.is_enter():
+            if self._pressed_key.is_enter():
                 # Submit keyboard input
-                self.__submitted = True
-                if self.__is_real_time_display_mode:
+                self._submitted = True
+                if self._is_real_time_display_mode:
                     Console.puts("")  # New line
-                self.__logger.info("The user entered '%s'", self.__string)
+                self.__logger.info("The user entered '%s'", self._string)
 
-            elif self.__pressed_key.is_escape():
+            elif self._pressed_key.is_escape():
                 # Clear buffer
-                self.__string = ""
-                if self.__is_real_time_display_mode:
+                self._string = ""
+                if self._is_real_time_display_mode:
                     Console.remove_line()
 
-            elif self.__pressed_key.is_delete():
+            elif self._pressed_key.is_delete():
                 # Remove a last charcter
-                if (len(self.__string) > 0):
-                    self.__string = self.__string[:-1]
-                    if self.__is_real_time_display_mode:
+                if (len(self._string) > 0):
+                    self._string = self._string[:-1]
+                    if self._is_real_time_display_mode:
                         Console.remove_char()
             else:
                 # Join a character to last position
-                key = chr(ord(self.__pressed_key.get()))
+                key = chr(ord(self._pressed_key.get()))
                 if key.isascii():
-                    self.__string += key
-                    if self.__is_real_time_display_mode:
+                    self._string += key
+                    if self._is_real_time_display_mode:
                         Console.puts(key, end='')
 
         else:
-            self.__updated = False
+            self._updated = False
 
     def get_string(self):
         """バッファに蓄積されている文字列を返します。
@@ -96,7 +96,7 @@ class ConsoleTextField(input.IUserInputReader):
             str: バッファに蓄積されている文字列
 
         """
-        return self.__string
+        return self._string
 
     def submitted(self):
         """エンターキーが押されたときTrueを返します。
@@ -108,7 +108,7 @@ class ConsoleTextField(input.IUserInputReader):
             bool: エンターキーが押されたか
 
         """
-        return self.__submitted
+        return self._submitted
 
     def display_in_real_time(self, enabled):
         """キーボード入力をリアルタイムにコンソール出力すべきか否かを切り替えます。
@@ -120,7 +120,7 @@ class ConsoleTextField(input.IUserInputReader):
             void
 
         """
-        self.__is_real_time_display_mode = enabled
+        self._is_real_time_display_mode = enabled
 
 
 def debug_this_module():

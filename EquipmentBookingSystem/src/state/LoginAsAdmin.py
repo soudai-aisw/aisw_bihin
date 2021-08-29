@@ -14,7 +14,7 @@ class LoginAsAdmin(state.IState):
         self.__logger = getLogger(__name__)
         self.__logger.info("LoginAsAdmin starts.")
 
-        self.__text_field = input.ConsoleTextField()
+        self.__text_field = input.PasswordTextField()
         Console.clear()
         Console.puts("[Login as admin]")
         Console.puts("Please enter the password.")
@@ -33,7 +33,7 @@ class LoginAsAdmin(state.IState):
             return state.Admin()
         else:
             Console.puts("Login failed.")
-            self.__logger.info("Login failed.",)
+            self.__logger.info("Login failed. User input is '%s'", self.__text_field.get_string())
             next = state.GotoNextAfterWaiting()
             next.set_next_state(state.LoginAsAdmin())
             return next
