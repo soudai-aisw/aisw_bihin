@@ -14,7 +14,9 @@ import db.matching.DBmatching as db
 
 class StandbyBarrowEquipmentIdRead(state.IState):
     def entry(self):
-        self.__input = input.UserInputReader()
+        self.__input = input.SunitizedString(
+            input.UserInputReader()
+        )
         self.__get_next_state = state.ErrorHasOccurred()
         Console.clear()
         Console.puts("借用する備品のRFIDをかざしてください")

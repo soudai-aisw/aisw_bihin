@@ -15,7 +15,9 @@ import db.Registration.DBregistration as dbregist
 
 class StandbyReturnEquipmentIdRead(state.IState):
     def entry(self):
-        self.__input = input.UserInputReader()
+        self.__input = input.SunitizedString(
+            input.UserInputReader()
+        )
         self.__get_next_state = state.ErrorHasOccurred()
         Console.clear()
         Console.puts("返却する備品のRFIDをかざしてください")

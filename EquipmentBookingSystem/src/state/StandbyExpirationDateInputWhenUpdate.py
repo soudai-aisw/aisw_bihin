@@ -7,12 +7,17 @@ import dev.input as input
 import db.Registration.DBregistration as dbregist
 import cmn.ExpirationDateCheck as edchk
 
+
 class StandbyExpirationDateInputWhenUpdate(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("返却予定日を入力してください", "(yyyy/mm/dd)")
         Console.puts(">", end="")
-        self.__input = input.UserInputReader()
+        self.__input = input.DateFormatedString(
+            input.SunitizedString(
+                input.UserInputReader()
+            )
+        )
         self.__get_next_state = state.ErrorHasOccurred()
 
     def do(self):
@@ -21,8 +26,8 @@ class StandbyExpirationDateInputWhenUpdate(state.IState):
     def exit(self):
         return_date = self.__input.get_string()
         # 返却日の内容が正しいかチェック
-        checkresult = edchk.ExpirationDateCheck(return_date,90)
-        if checkresult == True: 
+        checkresult = edchk.ExpirationDateCheck(return_date, 90)
+        if checkresult == True:
             result = dbregist.DBregistration_Update(
                 state.CommonResource.equipmentId, return_date)
             if result == True:
@@ -40,7 +45,7 @@ class StandbyExpirationDateInputWhenUpdate(state.IState):
             Console.puts("返却予定日は今日を含めた90日以内を指定してください。")
             self.__get_next_state = state.GotoNextAfterWaiting()
             self.__get_next_state.set_next_state(
-                state.StandbyExpirationDateInputWhenUpdate())        
+                state.StandbyExpirationDateInputWhenUpdate())
 
     def get_next_state(self):
         return self.__get_next_state
