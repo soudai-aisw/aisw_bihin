@@ -4,19 +4,23 @@ from db.Record import Record
 
 
 class EquipmentRecord(Record):
+    USER_ID = "ユーザID"
     EQUIPMENT_ID = "施設ID"
     RFID = "タグID"
+    STATUS = "内容"
+    BEGIN_DATE = "開始日付"
+    END_DATE = "終了日付"
 
     def _dict_init(self):
         return {
             EquipmentRecord.EQUIPMENT_ID: "-",
-            "ユーザID": "-",
+            EquipmentRecord.USER_ID: "-",
             "利用目的": "-",
-            "開始日付": "0",
+            EquipmentRecord.BEGIN_DATE: "0",
             "開始時刻": "0",
-            "終了日付": "0",
+            EquipmentRecord.END_DATE: "0",
             "終了時刻": "0",
-            "内容": "借用可能",
+            EquipmentRecord.STATUS: "借用可能",
             "編集権限": "0",
             "公開区分": "0",
             "担当部署": "-",

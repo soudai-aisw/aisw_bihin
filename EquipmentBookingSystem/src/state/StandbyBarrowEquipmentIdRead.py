@@ -9,7 +9,7 @@ if __name__ == "__main__":
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-import db.matching.DBmatching as db
+from db.UserProcedure import UserProcedure
 
 
 class StandbyBarrowEquipmentIdRead(state.IState):
@@ -26,36 +26,29 @@ class StandbyBarrowEquipmentIdRead(state.IState):
         self.__input.capture()
 
     def exit(self):
-        equipmentId = self.__input.get_string()
+        equipment_rfid = self.__input.get_string()
 
-        # -----DBの戻り値-----
-        # 0: 未登録
-        # 1：借用可能
-        # 2：借用中
-        # 3：故障中
-        # --------------------
-
-        rfid_return = db.DBmatching_EquIDtoEquStatus(equipmentId)
+        status = UserProcedure().get_equipment_status_by(equipment_rfid)
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
-        if rfid_return == 1:
-            state.CommonResource.equipmentId = equipmentId
+        if status == UserProcedure.EquipmentStatus.AVAILABLE:
+            state.CommonResource.equipmentId = equipment_rfid
             self.__get_next_state = state.StandbyExpirationDateInputWhenBarrow()
 
         # かざされたRFIDがDB上貸し出されている場合
-        if rfid_return == 2:
+        elif status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
             Console.puts("貸し出されている備品です。", "\n")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
             self.__get_next_state = state.ErrorHasOccurred()
 
         # かざされたRFIDがDB上登録されていない場合
-        if rfid_return == 0:
+        elif status == UserProcedure.EquipmentStatus.NOT_EXIST:
             Console.puts("登録されていない備品です。", "\n")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
             self.__get_next_state = state.ErrorHasOccurred()
 
-        # かざされたRFIDが故障中の場合(今は仮値)
-        if rfid_return == 3:
+        # かざされたRFIDが故障中の場合
+        elif status == UserProcedure.EquipmentStatus.OUT_OF_ORDER:
             Console.puts("故障中につき貸し出し対象外の備品です。")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください", "\n")
             self.__get_next_state = state.ErrorHasOccurred()

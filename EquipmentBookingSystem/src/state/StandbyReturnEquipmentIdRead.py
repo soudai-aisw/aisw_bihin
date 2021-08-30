@@ -1,16 +1,9 @@
 #!/usr/bin/env python
 
-if __name__ == "__main__":
-    import os
-    import sys
-    import time
-    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-import db.matching.DBmatching as dbmatch
-import db.Registration.DBregistration as dbregist
+from db.UserProcedure import UserProcedure
 
 
 class StandbyReturnEquipmentIdRead(state.IState):
@@ -27,41 +20,35 @@ class StandbyReturnEquipmentIdRead(state.IState):
         self.__input.capture()
 
     def exit(self):
-        equipmentId = self.__input.get_string()
+        equipment_rfid = self.__input.get_string()
 
-        # -----DBの戻り値-----
-        # 0: 未登録
-        # 1：借用可能
-        # 2：借用中
-        # 3：故障中
-        # --------------------
-        rfid_return = dbmatch.DBmatching_EquIDtoEquStatus(equipmentId)
-
+        status = UserProcedure().get_equipment_status_by(equipment_rfid)
+        
         # かざされたRFIDがDB照合結果、貸し出されているものだった場合(今は仮値)
-        if rfid_return == 2:
-            state.CommonResource.equipmentId = equipmentId
-            equipment_return = dbregist.DBregistration_Return(equipmentId)
-            if equipment_return == True:
+        if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
+            state.CommonResource.equipmentId = equipment_rfid
+
+            if UserProcedure().return_equipment(equipment_rfid) == True:
                 self.__get_next_state = state.SuccessReturnEquipment()
             else:
                 Console.puts("返却処理に失敗しました")
                 Console.puts("再度試しても失敗する場合、システム管理者に問い合わせください", "\n")
                 self.__get_next_state = state.ErrorHasOccurred()
 
-        # かざされたRFIDがDB上貸し出されていない場合(今は仮値)
-        if rfid_return == 1:
+        # かざされたRFIDがDB上貸し出されていない場合
+        if status == UserProcedure.EquipmentStatus.AVAILABLE:
             Console.puts("貸し出されていない備品です。")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください", "\n")
             self.__get_next_state = state.ErrorHasOccurred()
 
-        # かざされたRFIDがDB上登録されていない場合(今は仮値)
-        if rfid_return == 0:
+        # かざされたRFIDがDB上登録されていない場合
+        if status == UserProcedure.EquipmentStatus.NOT_EXIST:
             Console.puts("登録されていない備品です。")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください", "\n")
             self.__get_next_state = state.ErrorHasOccurred()
 
-        # かざされたRFIDが故障中の場合(今は仮値)
-        if rfid_return == 3:
+        # かざされたRFIDが故障中の場合
+        if status == UserProcedure.EquipmentStatus.OUT_OF_ORDER:
             Console.puts("故障中につき貸し出し対象外の備品です。")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください", "\n")
             self.__get_next_state = state.ErrorHasOccurred()

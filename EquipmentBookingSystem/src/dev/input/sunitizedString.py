@@ -14,7 +14,7 @@ class SunitizedString(input.InputString):
 
     def get_string(self):
         return re.sub(
-            '[\[\]\\"\']',
+            '[\[\]\\"\'\*]',
             '',
             self.user_input_reader.get_string()
         )

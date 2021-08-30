@@ -3,8 +3,7 @@
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-import db.matching.DBmatching as db
-
+from db.UserProcedure import UserProcedure
 
 class StandbyUpdateEquipmentIdInput(state.IState):
     def entry(self):
@@ -24,34 +23,27 @@ class StandbyUpdateEquipmentIdInput(state.IState):
         # キーボード情報取得
         key_data = self.__input.get_string()
 
-        # -----DBの戻り値-----
-        # 0: 未登録
-        # 1：借用可能
-        # 2：借用中
-        # 3：故障中
-        # --------------------
-
-        rfid_return = db.DBmatching_EquIDtoEquStatus(key_data)
+        status = UserProcedure().get_equipment_status_by(key_data)
 
         # かざされたRFIDがDB上貸し出されている場合
-        if rfid_return == 2:
+        if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
             state.CommonResource.equipmentId = key_data
             self.__get_next_state = state.StandbyExpirationDateInputWhenUpdate()
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
-        if rfid_return == 1:
+        if status == UserProcedure.EquipmentStatus.AVAILABLE:
             Console.puts("まだ貸し出しされていない備品です。", "\n")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
             self.__get_next_state = state.ErrorHasOccurred()
 
         # かざされたRFIDがDB上登録されていない場合
-        if rfid_return == 0:
+        if status == UserProcedure.EquipmentStatus.NOT_EXIST:
             Console.puts("登録されていない備品です。", "\n")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください")
             self.__get_next_state = state.ErrorHasOccurred()
 
-        # かざされたRFIDが故障中の場合(今は仮値)
-        if rfid_return == 3:
+        # かざされたRFIDが故障中の場合
+        if status == UserProcedure.EquipmentStatus.OUT_OF_ORDER:
             Console.puts("故障中につき貸し出し対象外の備品です。")
             Console.puts("認識と異なる場合は、システム管理者に問い合わせください", "\n")
             self.__get_next_state = state.ErrorHasOccurred()

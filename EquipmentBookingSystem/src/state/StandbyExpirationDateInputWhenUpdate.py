@@ -4,8 +4,8 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-import db.Registration.DBregistration as dbregist
 import cmn.ExpirationDateCheck as edchk
+from db.UserProcedure import UserProcedure
 
 
 class StandbyExpirationDateInputWhenUpdate(state.IState):
@@ -28,8 +28,8 @@ class StandbyExpirationDateInputWhenUpdate(state.IState):
         # 返却日の内容が正しいかチェック
         checkresult = edchk.ExpirationDateCheck(return_date, 90)
         if checkresult == True:
-            result = dbregist.DBregistration_Update(
-                state.CommonResource.equipmentId, return_date)
+            result = UserProcedure().update_equipment_return_date(
+                state.CommonResource.employeeId, state.CommonResource.equipmentId, return_date)
             if result == True:
                 Console.puts("返却予定日", return_date, "を受理しました")
                 state.CommonResource.expirationDate = return_date
