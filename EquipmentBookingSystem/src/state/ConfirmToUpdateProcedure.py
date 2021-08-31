@@ -28,7 +28,7 @@ class ConfirmToUpdateProcedure(state.IState):
 
     def exit(self):
         if( self.__input.get_string() in ["y","Y"]):
-            result = UserProcedure().update_equipment_return_date(
+            result = UserProcedure(True).update_equipment_return_date(
                 cmn_res.user.data[AccountRecord.EMPLOYEE_ID],
                 cmn_res.equipment.data[EquipmentRecord.EQUIPMENT_ID],
                 cmn_res.equipment.data[EquipmentRecord.END_DATE])

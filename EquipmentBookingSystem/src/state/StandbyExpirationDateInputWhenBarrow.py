@@ -32,7 +32,7 @@ class StandbyExpirationDateInputWhenBarrow(state.IState):
         checkresult = edchk.ExpirationDateCheck(return_date, 90)
         if checkresult == True:
 
-            result = UserProcedure().borrow_equipment(
+            result = UserProcedure(True).borrow_equipment(
                 cmn_res.user.data[AccountRecord.EMPLOYEE_ID],
                 cmn_res.equipment.data[EquipmentRecord.RFID],
                 return_date)

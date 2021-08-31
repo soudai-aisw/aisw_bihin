@@ -35,7 +35,7 @@ class StandbyReturnEquipmentIdRead(state.IState):
         if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
             cmn_res.equipment.data = UserProcedure().get_equipment_record_by(rfid=equipment_rfid)
 
-            if UserProcedure().return_equipment(equipment_rfid) == True:
+            if UserProcedure(True).return_equipment(equipment_rfid) == True:
                 self.__get_next_state = state.SuccessReturnEquipment()
             else:
                 Console.puts("返却処理に失敗しました")
