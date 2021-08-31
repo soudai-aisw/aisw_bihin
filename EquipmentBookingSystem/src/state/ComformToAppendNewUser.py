@@ -28,7 +28,7 @@ class ComformToAppendNewUser(state.IState):
         self.__input.capture()
 
     def exit(self):
-        if (self.__input.get_string() == "Y"):
+        if (self.__input.get_string() in ["y","Y"]):
             Console.puts("ユーザ情報を登録しました。")
             AccountLedger().update(cmn_res.user)
         else:
