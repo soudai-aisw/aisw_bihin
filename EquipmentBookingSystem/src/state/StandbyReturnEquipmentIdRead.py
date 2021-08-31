@@ -22,7 +22,7 @@ class StandbyReturnEquipmentIdRead(state.IState):
     def exit(self):
         equipment_rfid = self.__input.get_string()
 
-        status = UserProcedure().get_equipment_status_by(equipment_rfid)
+        status = UserProcedure().get_equipment_status_by(rfid=equipment_rfid)
         
         # かざされたRFIDがDB照合結果、貸し出されているものだった場合(今は仮値)
         if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:

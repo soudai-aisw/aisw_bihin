@@ -28,7 +28,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
     def exit(self):
         equipment_rfid = self.__input.get_string()
 
-        status = UserProcedure().get_equipment_status_by(equipment_rfid)
+        status = UserProcedure().get_equipment_status_by(rfid=equipment_rfid)
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
         if status == UserProcedure.EquipmentStatus.AVAILABLE:

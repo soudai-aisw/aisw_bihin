@@ -6,6 +6,7 @@ from db.Record import Record
 class EquipmentRecord(Record):
     USER_ID = "ユーザID"
     EQUIPMENT_ID = "施設ID"
+    EQUIPMENT_NAME = "利用目的"
     RFID = "タグID"
     STATUS = "内容"
     BEGIN_DATE = "開始日付"
@@ -15,7 +16,7 @@ class EquipmentRecord(Record):
         return {
             EquipmentRecord.EQUIPMENT_ID: "-",
             EquipmentRecord.USER_ID: "-",
-            "利用目的": "-",
+            EquipmentRecord.EQUIPMENT_NAME: "-",
             EquipmentRecord.BEGIN_DATE: "0",
             "開始時刻": "0",
             EquipmentRecord.END_DATE: "0",

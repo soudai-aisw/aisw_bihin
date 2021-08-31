@@ -21,13 +21,13 @@ class StandbyUpdateEquipmentIdInput(state.IState):
 
     def exit(self):
         # キーボード情報取得
-        key_data = self.__input.get_string()
+        equipment_id = self.__input.get_string()
 
-        status = UserProcedure().get_equipment_status_by(key_data)
+        status = UserProcedure().get_equipment_status_by(equipment_id=equipment_id)
 
         # かざされたRFIDがDB上貸し出されている場合
         if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
-            state.CommonResource.equipmentId = key_data
+            state.CommonResource.equipmentId = equipment_id
             self.__get_next_state = state.StandbyExpirationDateInputWhenUpdate()
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
