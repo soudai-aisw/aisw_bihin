@@ -15,8 +15,6 @@ class Restart(state.IState):
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
         Console.clear()
-        if cmn_res.user.data[AccountRecord.EMPLOYEE_ID] != "":
-            Console.puts(cmn_res.user.data[AccountRecord.EMPLOYEE_ID], "さん。")
         Console.puts("一定時間操作がなかったか終了コードを受け付けたためエントランスに戻ります。")
 
     def do(self):

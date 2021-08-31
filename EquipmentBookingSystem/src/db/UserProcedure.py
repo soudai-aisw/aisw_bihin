@@ -18,8 +18,13 @@ class UserProcedure:
         self.account_ledger = AccountLedger()
         self.equipment_ledger = EquipmentLedger()
 
-    def get_user_record_by(self, rfid_of_user):
-        records = self.account_ledger.find_by(AccountRecord.RFID, rfid_of_user)
+    def get_user_record_by(self, rfid=None, employee_id=None):
+        if rfid is not None:
+            records = self.account_ledger.find_by(AccountRecord.RFID, rfid)
+        elif employee_id is not None:
+            records = self.account_ledger.find_by(AccountRecord.EMPLOYEE_ID, employee_id)
+        else:
+            raise SystemError("Invalid arguments.")
 
         if len(records) == 0:
             return None

@@ -25,12 +25,11 @@ class StandbyUserIdInput(state.IState):
     def exit(self):
         rfid = self.__input.get_string()
         if (rfid != ""):
-            record = UserProcedure().get_user_record_by(rfid)
+            record = UserProcedure().get_user_record_by(rfid=rfid)
 
             if record is None:
-                Console.puts("存在しない社員番号です")
-                Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。")
-                self.__get_next_state = state.ErrorHasOccurred()
+                cmn_res.user.data[AccountRecord.RFID] = rfid
+                self.__get_next_state = state.AppendNewUser()
             else:
                 cmn_res.user.data = record
 
@@ -41,7 +40,7 @@ class StandbyUserIdInput(state.IState):
                     cmn_res.user.data[AccountRecord.LAST_NAME],
                     cmn_res.user.data[AccountRecord.FIRST_NAME],
                     "さん", "\n")
-                    
+
                 self.__get_next_state = state.GotoNextAfterWaiting()
                 self.__get_next_state.set_next_state(
                     state.StandbyUserProcedureInput())

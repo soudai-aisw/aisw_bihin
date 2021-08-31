@@ -5,6 +5,8 @@ from .Init import *
 from .Restart import *
 from .Exit import *
 from .PreExit import *
+from .AppendNewUser import *
+from .ComformToAppendNewUser import *
 from .StandbyUserIdInput import *
 from .StandbyUserProcedureInput import *
 from .StandbyBarrowEquipmentIdRead import *
