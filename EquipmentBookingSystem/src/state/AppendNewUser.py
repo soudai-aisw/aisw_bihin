@@ -7,6 +7,7 @@ from db.AccountLedger import AccountLedger
 from db.AccountRecord import AccountRecord
 from db.UserProcedure import UserProcedure
 from state.commonResource import CommonResource as cmn_res
+import math
 
 class AppendNewUser(state.IState):
     def entry(self):
@@ -31,15 +32,22 @@ class AppendNewUser(state.IState):
                 Console.puts("存在しない社員番号です")
                 Console.puts("システム管理者に問い合わせてください")
                 self.__get_next_state = state.ErrorHasOccurred()
-            elif record[AccountRecord.RFID] != "":
-                Console.puts("社員番号",employee_id,"には既にRFID",record[AccountRecord.RFID],"が関連付けられています")
-                Console.puts("システム管理者に問い合わせてください")
-                self.__get_next_state = state.ErrorHasOccurred()
-            else:
+                return
+            
+            rfid = record[AccountRecord.RFID]
+            if type(rfid) is float:
+                if math.isnan(record[AccountRecord.RFID]):
+                    rfid = ""
+
+            if rfid=="":
                 rfid = cmn_res.user.data[AccountRecord.RFID]
                 cmn_res.user.data = record
                 cmn_res.user.data[AccountRecord.RFID] = rfid
-                self.__get_next_state = state.ComformToAppendNewUser()
+                self.__get_next_state = state.ConfirmToAppendNewUser()
+            else:
+                Console.puts("社員番号",employee_id,"には既にRFID",record[AccountRecord.RFID],"が関連付けられています")
+                Console.puts("システム管理者に問い合わせてください")
+                self.__get_next_state = state.ErrorHasOccurred()
 
         else:
             self.__get_next_state = state.AppendNewUser()

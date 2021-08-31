@@ -8,7 +8,7 @@ from db.AccountRecord import AccountRecord
 from db.UserProcedure import UserProcedure
 from state.commonResource import CommonResource as cmn_res
 
-class ComformToAppendNewUser(state.IState):
+class ConfirmToAppendNewUser(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("以下の情報で登録します。よろしいですか？(Y/N)")
