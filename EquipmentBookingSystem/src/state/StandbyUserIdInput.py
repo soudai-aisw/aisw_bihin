@@ -7,15 +7,21 @@ from db.AccountLedger import AccountLedger
 from db.AccountRecord import AccountRecord
 from db.UserProcedure import UserProcedure
 from state.commonResource import CommonResource as cmn_res
+import config
 
 class StandbyUserIdInput(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("社員証をかざしてください")
         Console.puts(">", end="")
-        self.__input = input.SunitizedString(
-            input.UserInputReader()
-        )
+        if config.is_debug_mode():
+            self.__input = input.SunitizedString(
+                input.UserInputReader()
+            )
+        else:
+            self.__input = input.SunitizedString(
+                input.RFIDReader()
+            )
 
         self.__get_next_state = state.ErrorHasOccurred()
 

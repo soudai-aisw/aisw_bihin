@@ -6,13 +6,18 @@ import dev.input as input
 from db.UserProcedure import UserProcedure
 from state.commonResource import CommonResource as cmn_res
 from db.EquipmentRecord import EquipmentRecord
-
+import config
 
 class StandbyReturnEquipmentIdRead(state.IState):
     def entry(self):
-        self.__input = input.SunitizedString(
-            input.UserInputReader()
-        )
+        if config.is_debug_mode():
+            self.__input = input.SunitizedString(
+                input.UserInputReader()
+            )
+        else:
+            self.__input = input.SunitizedString(
+                input.RFIDReader()
+            )
         self.__get_next_state = state.ErrorHasOccurred()
         Console.clear()
         Console.puts("返却する備品のRFIDをかざしてください")

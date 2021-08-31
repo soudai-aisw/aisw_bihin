@@ -2,6 +2,13 @@
 import os
 
 # path
+def is_release_mode():
+    return False
+
+def is_debug_mode():
+    return True
+
+# path
 def get_project_root():
     return os.path.join(get_src_dir(), "..")
 
