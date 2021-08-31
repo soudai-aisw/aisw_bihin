@@ -31,6 +31,10 @@ class AppendNewUser(state.IState):
                 Console.puts("存在しない社員番号です")
                 Console.puts("システム管理者に問い合わせてください")
                 self.__get_next_state = state.ErrorHasOccurred()
+            elif record[AccountRecord.RFID] != "":
+                Console.puts("社員番号",employee_id,"には既にRFID",record[AccountRecord.RFID],"が関連付けられています")
+                Console.puts("システム管理者に問い合わせてください")
+                self.__get_next_state = state.ErrorHasOccurred()
             else:
                 rfid = cmn_res.user.data[AccountRecord.RFID]
                 cmn_res.user.data = record
