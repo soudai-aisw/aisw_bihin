@@ -38,10 +38,10 @@ class Ledger():
         return self.__write_all(records)
 
     def drop_by(self, key, value):
-        return self.__write_all(self.query('~'+self.__query_for_pair(key, value)))
+        return self.__write_all(self.query('{0} != "{1}"'.format(key, value)))
 
     def find_by(self, key, value):
-        return self.query(self.__query_for_pair(key, value))
+        return self.query('{0} == "{1}"'.format(key, value))
 
     def __read_all(self):
         return pandas.read_csv(self._db_path, encoding=self._encoding, dtype=object)
@@ -50,9 +50,6 @@ class Ledger():
         records.to_csv(self._db_path, index=False,
                        header=True, encoding=self._encoding, mode='w')
         return True
-
-    def __query_for_pair(self, key, value):
-        return '{0}.astype("str").str.match("^{1}$")'.format(key, value)
 
     @property
     def _db_path(self):
