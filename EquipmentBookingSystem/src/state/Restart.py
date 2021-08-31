@@ -1,20 +1,22 @@
 #!/usr/bin/env python
 
+from db.AccountRecord import AccountRecord
+from db.EquipmentRecord import EquipmentRecord
 import time
 
 import state as state
 import dev.display.Console as Console
 import dev.input as input
 import config
-
+from state.commonResource import CommonResource as cmn_res
 
 class Restart(state.IState):
     def entry(self):
         self.__start_time = time.time()
         self.__pressed_key = input.PressedKey()
         Console.clear()
-        if state.CommonResource.employeeId != "":
-            Console.puts(state.CommonResource.employeeId, "さん。")
+        if cmn_res.user.data[AccountRecord.EMPLOYEE_ID] != "":
+            Console.puts(cmn_res.user.data[AccountRecord.EMPLOYEE_ID], "さん。")
         Console.puts("一定時間操作がなかったか終了コードを受け付けたためエントランスに戻ります。")
 
     def do(self):

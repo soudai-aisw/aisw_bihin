@@ -6,12 +6,12 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 import config
-
+from state.commonResource import CommonResource as cmn_res
 
 class Init(state.IState):
 
     def entry(self):
-        state.CommonResource.initialize()
+        cmn_res.initialize()
         self.__pressed_key = input.PressedKey()
         Console.clear()
         Console.puts("備品管理システムにようこそ")

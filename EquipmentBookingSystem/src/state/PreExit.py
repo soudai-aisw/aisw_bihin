@@ -5,12 +5,12 @@ import time
 import state as state
 import dev.display.Console as Console
 import dev.input as input
-
+from state.commonResource import CommonResource as cmn_res
 
 class PreExit(state.IState):
 
     def entry(self):
-        state.CommonResource.initialize()
+        cmn_res.initialize()
         self.__pressed_key = input.PressedKey()
         Console.puts("エントランスでESCキーが入力されました。")
         Console.puts("タイムアウト前にもう一度ESCキーを入力すると完全にプログラムを終了します。")

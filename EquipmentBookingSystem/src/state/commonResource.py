@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
+from state.IState import IState
 import state
+from db.EquipmentRecord import EquipmentRecord
+from db.AccountRecord import AccountRecord
 
 
 class Enquiry():
@@ -11,15 +14,12 @@ class Enquiry():
 
 
 class CommonResource():
-    employeeId = ""                 # 社員番号
-    enquiry = Enquiry.Invalid       # 問い合わせ内容
-    equipmentId = ""                # 機材ID
-    expirationDate = ""             # 返却予定日
-    prev_state = state.Init()
+    user: EquipmentRecord = None
+    equipment:AccountRecord = None
+    prev_state:IState = None
 
     @staticmethod
     def initialize():
-        CommonResource.employeeId = ""                  # 社員番号
-        CommonResource.enquiry = Enquiry.Invalid        # 問い合わせ内容
-        CommonResource.equipmentId = ""                 # 機材ID
-        CommonResource.expirationDate = ""              # 返却予定日
+        CommonResource.user = AccountRecord()
+        CommonResource.equipment = EquipmentRecord()
+        CommonResource.prev_state = state.Init()

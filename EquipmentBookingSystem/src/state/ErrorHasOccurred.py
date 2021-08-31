@@ -6,7 +6,7 @@ import time
 import dev.display.Console as Console
 import dev.input as input
 import config
-
+from state.commonResource import CommonResource as cmn_res
 
 class ErrorHasOccurred(state.IState):
     def entry(self):
@@ -20,7 +20,7 @@ class ErrorHasOccurred(state.IState):
         pass
 
     def get_next_state(self):
-        return state.CommonResource.prev_state
+        return cmn_res.prev_state
 
     def should_exit(self):
         return self.__pressed_key.exists() or self.__timeout_detected()

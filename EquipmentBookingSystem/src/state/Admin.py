@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from state.commonResource import CommonResource
+from state.commonResource import CommonResource as cmn_res
 import time
 import hashlib
 import pandas as pd
@@ -29,7 +29,7 @@ class Admin(state.IState):
     def entry(self):
         self.__text_field = input.ConsoleTextField()
 
-        if not isinstance(CommonResource.prev_state, state.Admin):
+        if not isinstance(cmn_res.prev_state, state.Admin):
             Console.puts("")
             Console.puts("[Start admin mode]")
 

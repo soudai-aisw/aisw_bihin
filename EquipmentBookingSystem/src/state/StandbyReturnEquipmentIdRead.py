@@ -4,6 +4,8 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 from db.UserProcedure import UserProcedure
+from state.commonResource import CommonResource as cmn_res
+from db.EquipmentRecord import EquipmentRecord
 
 
 class StandbyReturnEquipmentIdRead(state.IState):
@@ -23,10 +25,10 @@ class StandbyReturnEquipmentIdRead(state.IState):
         equipment_rfid = self.__input.get_string()
 
         status = UserProcedure().get_equipment_status_by(rfid=equipment_rfid)
-        
+
         # かざされたRFIDがDB照合結果、貸し出されているものだった場合(今は仮値)
         if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
-            state.CommonResource.equipmentId = equipment_rfid
+            cmn_res.equipment.data = UserProcedure().get_equipment_record_by(rfid=equipment_rfid)
 
             if UserProcedure().return_equipment(equipment_rfid) == True:
                 self.__get_next_state = state.SuccessReturnEquipment()

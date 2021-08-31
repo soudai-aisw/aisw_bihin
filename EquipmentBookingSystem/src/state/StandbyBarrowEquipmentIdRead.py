@@ -6,10 +6,13 @@ if __name__ == "__main__":
     import time
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+from db.EquipmentRecord import EquipmentRecord
+from db.EquipmentLedger import EquipmentLedger
 import state as state
 import dev.display.Console as Console
 import dev.input as input
 from db.UserProcedure import UserProcedure
+from state.commonResource import CommonResource as cmn_res
 
 
 class StandbyBarrowEquipmentIdRead(state.IState):
@@ -32,7 +35,7 @@ class StandbyBarrowEquipmentIdRead(state.IState):
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合
         if status == UserProcedure.EquipmentStatus.AVAILABLE:
-            state.CommonResource.equipmentId = equipment_rfid
+            cmn_res.equipment.data = UserProcedure().get_equipment_record_by(rfid=equipment_rfid)
             self.__get_next_state = state.StandbyExpirationDateInputWhenBarrow()
 
         # かざされたRFIDがDB上貸し出されている場合

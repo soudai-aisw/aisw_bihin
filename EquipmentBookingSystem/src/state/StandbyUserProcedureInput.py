@@ -6,7 +6,6 @@ import dev.display.Console as Console
 import dev.input as input
 from .commonResource import Enquiry
 
-
 class StandbyUserProcedureInput(state.IState):
     def entry(self):
         Console.clear()
@@ -33,8 +32,6 @@ class StandbyUserProcedureInput(state.IState):
             Console.puts("不正なデータが入力されました。")
             Console.puts("再度入力してください。")
             Console.puts("")
-
-        state.CommonResource.enquiry = procedure_type
 
     def get_next_state(self):
         return self.__get_next_state

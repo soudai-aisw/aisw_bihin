@@ -4,6 +4,7 @@ import state as state
 import dev.display.Console as Console
 import dev.input as input
 from db.UserProcedure import UserProcedure
+from state.commonResource import CommonResource as cmn_res
 
 class StandbyUpdateEquipmentIdInput(state.IState):
     def entry(self):
@@ -27,7 +28,7 @@ class StandbyUpdateEquipmentIdInput(state.IState):
 
         # かざされたRFIDがDB上貸し出されている場合
         if status == UserProcedure.EquipmentStatus.ALREADY_RESERVED:
-            state.CommonResource.equipmentId = equipment_id
+            cmn_res.equipment.data = UserProcedure().get_equipment_record_by(equipment_id=equipment_id)
             self.__get_next_state = state.StandbyExpirationDateInputWhenUpdate()
 
         # かざされたRFIDがDB照合結果、貸し出されているものでなく登録されているものだった場合

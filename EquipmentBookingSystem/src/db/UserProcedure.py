@@ -28,6 +28,23 @@ class UserProcedure:
         else:
             raise SystemError("There are multiple primary keys.")
 
+    def get_equipment_record_by(self, rfid=None, equipment_id=None):
+        if rfid is not None:
+            records = EquipmentLedger().find_by(
+                EquipmentRecord.RFID, rfid)
+        elif equipment_id is not None:
+            records = EquipmentLedger().find_by(
+                EquipmentRecord.EQUIPMENT_ID, equipment_id)
+        else:
+            raise SystemError("Invalid arguments.")
+
+        if len(records) == 0:
+            return None
+        elif len(records) == 1:
+            return records.iloc[0]
+        else:
+            raise SystemError("There are multiple primary keys.")
+
     def get_equipment_status_by(self, rfid=None, equipment_id=None):
         if rfid is not None:
             records = EquipmentLedger().find_by(
