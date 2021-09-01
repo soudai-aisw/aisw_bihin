@@ -25,7 +25,7 @@ Except MFRC522.py, Copyright (c) KAIZEN-WG All Rights Reserved
 
 ## Authors
 
- - [Contributors](./graphs/contributors)
+ - [Contributors](https://github.com/soudai-aisw/aisw_bihin/graphs/contributors)
  - Mario Gomez ( provides [MFRC522.py](./src/dev/input/MFRC522.py) )
 
 
