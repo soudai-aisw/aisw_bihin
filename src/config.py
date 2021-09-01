@@ -16,13 +16,13 @@ def get_src_dir():
     return os.path.dirname(os.path.abspath(__file__))
 
 def get_database_dir():
-    return os.path.join(get_project_root(), "database")
+    return os.path.join(get_project_root(), "resource/database")
 
 def get_user_db_path():
-    return os.path.join(get_database_dir(), "db_userlist.csv")
+    return os.path.join(get_database_dir(), "t_user.csv")
 
 def get_equipment_db_path():
-    return os.path.join(get_database_dir(), "db_itemlist.csv")
+    return os.path.join(get_database_dir(), "t_equipment.csv")
 
 # time
 def get_time_of_main_cycle():
