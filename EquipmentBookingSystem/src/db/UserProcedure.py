@@ -15,8 +15,8 @@ class UserProcedure:
         AVAILABLE = auto()
 
     def __init__(self, backup=False):
-        self.account_ledger = AccountLedger()
-        self.equipment_ledger = EquipmentLedger()
+        self.account_ledger = AccountLedger(backup)
+        self.equipment_ledger = EquipmentLedger(backup)
 
     def get_user_record_by(self, rfid=None, employee_id=None):
         if rfid is not None:
