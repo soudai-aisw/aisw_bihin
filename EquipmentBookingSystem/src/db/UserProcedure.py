@@ -14,7 +14,7 @@ class UserProcedure:
         ALREADY_RESERVED = auto()
         AVAILABLE = auto()
 
-    def __init__(self):
+    def __init__(self, backup=False):
         self.account_ledger = AccountLedger()
         self.equipment_ledger = EquipmentLedger()
 
