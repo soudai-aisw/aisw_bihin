@@ -12,7 +12,7 @@ class StandbyUpdateEquipmentIdInput(state.IState):
         Console.puts("更新する機材のIDをキーボードで入力してください")
         Console.puts(">", end="")
         self.__input = input.SunitizedString(
-            input.UserInputReader()
+            input.ConsoleTextField()
         )
         self.__get_next_state = state.ErrorHasOccurred()
 

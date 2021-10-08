@@ -18,7 +18,7 @@ class StandbyExpirationDateInputWhenUpdate(state.IState):
         Console.puts(">", end="")
         self.__input = input.DateFormatedString(
             input.SunitizedString(
-                input.UserInputReader()
+                input.ConsoleTextField()
             )
         )
         self.__get_next_state = state.ErrorHasOccurred()

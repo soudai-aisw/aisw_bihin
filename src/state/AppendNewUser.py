@@ -12,10 +12,11 @@ import math
 class AppendNewUser(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts("登録されていないRFIDです。社員番号を入力してください")
+        Console.puts("まだ利用者登録されていません。")
+        Console.puts("この社員証で登録しますので、7桁の社員番号を入力してください。")
         Console.puts(">", end="")
         self.__input = input.SunitizedString(
-            input.UserInputReader()
+            input.ConsoleTextField()
         )
 
         self.__get_next_state = state.ErrorHasOccurred()

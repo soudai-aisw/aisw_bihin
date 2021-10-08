@@ -19,7 +19,7 @@ class ConfirmToAppendNewUser(state.IState):
 
         Console.puts(">", end="")
         self.__input = input.SunitizedString(
-            input.UserInputReader()
+            input.ConsoleTextField()
         )
 
         self.__get_next_state = state.ErrorHasOccurred()

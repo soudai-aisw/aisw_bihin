@@ -10,7 +10,7 @@ from dev.input import input
 class ConfirmToUpdateProcedure(state.IState):
     def entry(self):
         self.__input = input.SunitizedString(
-            input.UserInputReader()
+            input.ConsoleTextField()
         )
         self.__get_next_state = state.ErrorHasOccurred()
 
