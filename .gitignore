@@ -1,0 +1,10 @@
+#python
+__pycache__/
+*.py[cod]
+*$py.class
+
+#Database
+resource/database
+
+#Log
+execute.log
