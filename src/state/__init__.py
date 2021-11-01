@@ -6,8 +6,11 @@ from .Restart import *
 from .Exit import *
 from .PreExit import *
 from .AppendNewUser import *
+from .AppendNewEquipment import *
 from .ConfirmToAppendNewUser import *
+from .ConfirmToAppendNewEquipment import *
 from .ConfirmToUpdateProcedure import *
+from .StandbyAppendEquipmentIdRead import *
 from .StandbyUserIdInput import *
 from .StandbyUserProcedureInput import *
 from .StandbyBarrowEquipmentIdRead import *

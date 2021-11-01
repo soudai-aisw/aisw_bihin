@@ -65,6 +65,8 @@ class Admin(state.IState):
     def get_next_state(self):
         if self.__cmd == Command.EXIT:
             return state.Init()
+        elif self.__cmd == Command.ADD_EQUIPMENT:
+            return state.AppendNewEquipment()
         else:
             return state.Admin()
 
