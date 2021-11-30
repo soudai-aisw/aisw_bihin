@@ -11,6 +11,7 @@ class EquipmentRecord(Record):
     STATUS = "内容"
     BEGIN_DATE = "開始日付"
     END_DATE = "終了日付"
+    USE_PLACE = "使用場所"
 
     def _dict_init(self):
         return {
@@ -32,7 +33,7 @@ class EquipmentRecord(Record):
             "会議名案内": "-",
             "駐車場見込み台数": "-",
             "印刷区分": "-",
-            "行き先": "-",
+            EquipmentRecord.USE_PLACE: "1",
             EquipmentRecord.RFID: "0"
         }
 

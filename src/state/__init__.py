@@ -18,6 +18,7 @@ from .StandbyUpdateEquipmentIdInput import *
 from .StandbyReturnEquipmentIdRead import *
 from .StandbyExpirationDateInputWhenUpdate import *
 from .StandbyExpirationDateInputWhenBarrow import *
+from .StandbyUsePlaceInputWhenBarrow import *
 from .ErrorHasOccurred import *
 from .commonResource import *
 from .SuccessBarrowEquipment import *

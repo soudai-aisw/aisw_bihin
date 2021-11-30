@@ -31,25 +31,15 @@ class StandbyExpirationDateInputWhenBarrow(state.IState):
         # 返却日の内容が正しいかチェック
         checkresult = edchk.ExpirationDateCheck(return_date, 90)
         if checkresult == True:
+            Console.puts("返却予定日", return_date, "を受理しました")
+            cmn_res.equipment.data = {
+                EquipmentRecord.END_DATE: return_date
+            }
 
-            result = UserProcedure(True).borrow_equipment(
-                cmn_res.user.data[AccountRecord.EMPLOYEE_ID],
-                cmn_res.equipment.data[EquipmentRecord.RFID],
-                return_date)
-            if result == True:
-                Console.puts("返却予定日", return_date, "を受理しました")
-                cmn_res.equipment.data = {
-                    EquipmentRecord.END_DATE: return_date
-                }
+            self.__get_next_state = state.GotoNextAfterWaiting()
+            self.__get_next_state.set_next_state(
+                state.StandbyUsePlaceInputWhenBarrow())
 
-                self.__get_next_state = state.GotoNextAfterWaiting()
-                self.__get_next_state.set_next_state(
-                    state.SuccessBarrowEquipment())
-
-            else:
-                Console.puts("借用の受理に失敗しました。")
-                Console.puts("再度試しても失敗する場合、システム管理者に問い合わせてください。", "\n")
-                self.__get_next_state = state.ErrorHasOccurred()
         else:
             Console.puts("返却予定日は今日を含めた90日以内を指定してください。")
             self.__get_next_state = state.GotoNextAfterWaiting()

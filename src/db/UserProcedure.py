@@ -76,7 +76,7 @@ class UserProcedure:
         else:
             raise SystemError("There are multiple primary keys.")
 
-    def borrow_equipment(self, user_id, rfid_of_equipment, end_date):
+    def borrow_equipment(self, user_id, rfid_of_equipment, end_date, use_place):
         records = self.equipment_ledger.find_by(
             EquipmentRecord.RFID, rfid_of_equipment)
         if len(records) == 0:
@@ -88,7 +88,8 @@ class UserProcedure:
                 EquipmentRecord.USER_ID: user_id,
                 EquipmentRecord.BEGIN_DATE: datetime.now().strftime('%Y/%m/%d'),
                 EquipmentRecord.END_DATE: end_date,
-                EquipmentRecord.STATUS: "借用中"
+                EquipmentRecord.STATUS: "借用中",
+                EquipmentRecord.USE_PLACE: use_place
             }
             self.equipment_ledger.update(record)
         else:
@@ -108,7 +109,8 @@ class UserProcedure:
                 EquipmentRecord.USER_ID: "-",
                 EquipmentRecord.BEGIN_DATE: "-",
                 EquipmentRecord.END_DATE: "-",
-                EquipmentRecord.STATUS: "借用可能"
+                EquipmentRecord.STATUS: "借用可能",
+                EquipmentRecord.USE_PLACE: "-"
             }
             self.equipment_ledger.update(record)
         else:
