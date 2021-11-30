@@ -11,10 +11,11 @@ from db.UserProcedure import UserProcedure
 from state.commonResource import CommonResource as cmn_res
 from cmn.UsePlace import UsePlace
 
+
 class StandbyUsePlaceInputWhenBarrow(state.IState):
     def entry(self):
         Console.clear()
-        Console.puts("使用場所を入力して下さい。","{}:社内 {}:社外 {}:委託".format(
+        Console.puts("使用場所を入力して下さい。", "{}:社内 {}:社外 {}:委託".format(
             UsePlace.InAISW, UsePlace.OutAISW, UsePlace.Outsourcer))
         Console.puts(">", end="")
         self.__input = input.SunitizedString(
@@ -35,7 +36,7 @@ class StandbyUsePlaceInputWhenBarrow(state.IState):
                 cmn_res.user.data[AccountRecord.EMPLOYEE_ID],
                 cmn_res.equipment.data[EquipmentRecord.RFID],
                 cmn_res.equipment.data[EquipmentRecord.END_DATE],
-                use_place + "X" )
+                use_place + "X")
 
             if result == True:
                 place_name = UsePlace.ReturnName(use_place)

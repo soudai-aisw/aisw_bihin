@@ -13,14 +13,19 @@ import dev.display.Console as Console
 from state.commonResource import CommonResource as cmn_res
 from cmn.UsePlace import UsePlace
 
+
 class SuccessBarrowEquipment(state.IState):
     def entry(self):
         Console.clear()
         Console.puts("ユーザID  ：", cmn_res.user.data[AccountRecord.EMPLOYEE_ID])
-        Console.puts("機材ID    ：", cmn_res.equipment.data[EquipmentRecord.EQUIPMENT_ID])
-        Console.puts("機材名    ：", cmn_res.equipment.data[EquipmentRecord.EQUIPMENT_NAME])
-        Console.puts("返却予定日：", cmn_res.equipment.data[EquipmentRecord.END_DATE])
-        Console.puts("使用場所　：", UsePlace.ReturnName(cmn_res.equipment.data[EquipmentRecord.USE_PLACE]), "\n")
+        Console.puts(
+            "機材ID    ：", cmn_res.equipment.data[EquipmentRecord.EQUIPMENT_ID])
+        Console.puts(
+            "機材名    ：", cmn_res.equipment.data[EquipmentRecord.EQUIPMENT_NAME])
+        Console.puts(
+            "返却予定日：", cmn_res.equipment.data[EquipmentRecord.END_DATE])
+        Console.puts("使用場所  ：", UsePlace.ReturnName(
+            cmn_res.equipment.data[EquipmentRecord.USE_PLACE]), "\n")
         Console.puts("上記の情報で備品の貸出手続きが完了しました。\n")
         Console.puts("続けて他の機器の貸出処理が実施できます。")
         self.__get_next_state = state.ErrorHasOccurred()

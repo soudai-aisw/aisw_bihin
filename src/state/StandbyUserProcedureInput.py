@@ -6,6 +6,7 @@ import dev.display.Console as Console
 import dev.input as input
 from .commonResource import Enquiry
 
+
 class StandbyUserProcedureInput(state.IState):
     def entry(self):
         Console.clear()

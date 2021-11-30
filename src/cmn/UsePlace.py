@@ -7,6 +7,7 @@ if __name__ == "__main__":
 
 import dev.display.Console as Console
 
+
 class UsePlace():
     Invalid = ""
     InAISW = "1"
@@ -44,6 +45,7 @@ def __debug_this_module():
     print(result)
     result = UsePlace.ReturnName(str)
     print(result)
+
 
 if __name__ == "__main__":
     __debug_this_module()
